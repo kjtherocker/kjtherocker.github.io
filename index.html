@@ -1,27 +1,106 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="1670">
+  <title>Kyle Johnson - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
   <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 13.0px; font: 11.0px Courier; color: #000000; -webkit-text-stroke: #000000}
-    span.s1 {font-kerning: none}
-    span.s2 {font-kerning: none; color: #db361e; -webkit-text-stroke: 0px #db361e}
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    .header {
+      position: fixed;
+      width: 100%;
+      height: 80px;
+      background: white;
+      top: 0;
+      left: 0;
+      -webkit-box-shadow: 0px 10px 34px -13px rgba(0,0,0,0.26);
+      -moz-box-shadow: 0px 10px 34px -13px rgba(0,0,0,0.26);
+      box-shadow: 0px 10px 34px -13px rgba(0,0,0,0.26);
+      z-index: 5;
+    }
+
+    .header-buttons {
+      position: relative;
+      width: 50%;
+      height: 80px;
+      padding-left: 30px;
+      float: left;
+    }
+
+    .header-buttons > p {
+      position: relative;
+      top: 28px;
+      margin: 0;
+      display: inline-block;
+      font-size: 1.2em;
+      font-family: 'Merriweather', serif;
+      margin-right: 20px;
+      border-bottom: 0px solid rgb(185, 185, 185);
+    }
+
+    .header-buttons > p:hover {
+      border-bottom: 3px solid rgb(185, 185, 185);
+      transition: all .2s ease-in;
+      -webkit-transition: all .2s ease-in;
+      -moz-transition: all .2s ease-in;
+      -ms-transition: all .2s ease-in;
+      cursor: pointer;
+    }
+
+    .active {
+      display: inline-block;
+      border-bottom: 3px solid rgb(185, 185, 185) !important;
+    }
+
+    .logo {
+      position: relative;
+      width: 30%;
+      height: 80px;
+      float: right;
+    }
+
+    .logo > strong > p {
+      font-size: 1.4em;
+      float: right;
+      margin-top: 25px;
+      margin-right: 30px;
+    }
+
+    .main {
+      position: relative;
+      width: 100%;
+      padding: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 80px;
+      background: red;
+      height: 100px;
+    }
   </style>
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;head&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;meta charset="UTF-8"&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;title&gt;</span><span class="s2">title</span><span class="s1">&lt;/title&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;/head&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;body&gt;</span></p>
-<p class="p1"><span class="s1">  </span></p>
-<p class="p1"><span class="s1">  &lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+  <!-- Header -->
+  <div class="header">
+
+    <!-- Buttons -->
+    <div class="header-buttons">
+      <p class="active">Home</p>
+      <p>Portfolio</p>
+      <p>Resume</p>
+      <p>Contact</p>
+    </div>
+
+    <!-- Logo -->
+    <div class="logo">
+      <strong><p>Kyle Johnson</p></strong>
+    </div>
+  </div>
+
+  <div class="main">
+
+  </div>
 </body>
 </html>
