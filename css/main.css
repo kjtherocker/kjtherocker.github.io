@@ -56,6 +56,7 @@ body {
     width: 30%;
     height: 80px;
     float: right;
+    font-family: 'Montserrat', sans-serif;
   }
 
   .logo > strong > a {
@@ -74,23 +75,39 @@ body {
     margin-left: 0;
     margin-right: 0;
     margin-top: 80px;
+    font-family: 'Montserrat', sans-serif;
   }
 
-  .item {
+  .itemy  {
     position: relative;
     width: 33%;
     height: 300px;
     background: green;
     float: left;
     margin: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    outline: 10px solid black;
   }
 
-  .item > img {
+  .itemy > img {
     width: 100%;
-    height: auto;
+    height: 100%;
   }
 
-  .item:hover {
+  .flex {
+    width: 50% !important;
+  }
+
+  .super-flex {
+    width: 100% !important;
+    height: 500px;
+  }
+
+  .itemy:hover {
     box-shadow: 0px 0px 50px #00000070;
     z-index: 2;
     -webkit-transition: all 200ms ease-in;
@@ -101,4 +118,100 @@ body {
     -moz-transform: scale(1.1);
     transition: all 200ms ease-in;
     transform: scale(1.1);
+  }
+
+  .content
+  {
+    position: relative;
+    max-width: 1000px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .content > img {
+    width: 100%;
+  }
+
+  .tag {
+    position: relative;
+    display: inline-block;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+    border-radius: 10px;
+    margin-right: 10px;
+  }
+
+  .tag-link {
+    position: relative;
+    display: inline-block;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+    border-radius: 10px;
+    margin-right: 10px;
+    background: #8395a7;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+  .tag-link:hover {
+    background: #576574;
+  }
+
+  .tag-link > a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .tag-teal {
+    background: #01a3a4;
+  }
+
+  .tag-blue {
+    background: #54a0ff;
+  }
+
+  .tag-red {
+    background: #ff6b6b;
+  }
+
+  .tag-yellow {
+    background: #feca57;
+  }
+
+  .tag-purple {
+    background: #5f27cd;
+  }
+
+  .tag-pink {
+    background: #ff9ff3;
+  }
+
+  iframe {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .content > h2 {
+    display: table-cell;
+    vertical-align: bottom;
+    height: 120px;
+    padding-bottom: 20px;
+  }
+
+  .resume {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
   }
