@@ -29,7 +29,7 @@ details details summary {
   background-color: #404040 ;
 }
 
-#MarginedText {
+.MarginedText {
   margin: 35px;
   padding-left: 40px;
 }
@@ -37,5 +37,5 @@ details details summary {
 #demobox {
   background-color: #404040 ;
   padding: 10px ;
-  border: 1px solid green ;
+  border: 1px solid white ;
 }
