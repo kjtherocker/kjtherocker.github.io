@@ -38,7 +38,7 @@
 
 	  <!-- Twilights Call Remaster -->
 	<img src="Images/TwilightsCallTitle.png" alt="Title">
-	    <a href="https://github.com/kjtherocker/Twilights-Call" target="_blank"><div class="tag-link">Click this for Twilights Call Git Repo</div></a>
+	    <a href="https://github.com/kjtherocker/Twilights-Call" target="_blank"><div class="tag-link">Click this for Twilight's Call Git Repo</div></a>
       
       <br/>
 
@@ -55,7 +55,7 @@
      </p>
 
 	 <p>
-			<b>Twilight's Call A Hollow heart</b> is a Tactics Strategy game based on Fire Emblem and Disgaea programmed by me.
+			<b>Twilight's Call: A Hollow heart</b> is a Tactics Strategy game based on Fire Emblem and Disgaea programmed by me.
 	 </p>
 	  
 	  
@@ -68,21 +68,29 @@
      </p>
 
 		
-		<ul>
-		<li>
+		<p>
 		The unique gameplay feature of the game are that all the walkable ground in the game can be manipulated to both the player or 
 		enemy's advantage. This system is called "Domains". Each playable character has their own unique Domain and can coat the world 
 		in their respective colours. For example, the main character Sigma uses their Domain ability, Patchwork Chimera, to steal the
 		Domain ability of anyone within their own.This offers great tactical weight and morphs every move you make into a miniature puzzle.
-		</li>
-		</ul>
+		</p>
+		
+
+	 
+	 
 	 </p>
-	 <body>
+<div id="demobox">
+	<body>
     <section>
       <article>
         <details>
+		
+			 
+	
           <summary>Domain Code</summary>
- 	  <p>
+		   
+     </p>
+ 	 <p>
 	 
 		Once I get the list of avaliable nodes that can be activated, Once, I get the list of avaliable nodes that can be activated I loop through them all and by using the character's reference to his 
 		Domain class I get the correct texture,name and Domain Effect. I tell each of the nodes then to communicate with the shader to dissolve
@@ -99,48 +107,122 @@
 	 
 	 </p>
 	 
-	 <img src="Images/DomainDescription.png" alt="Title" style="width:1000px;height:600px;">
-	 <img src="Images/DomainDescription2.png" alt="Title" style="width:1000px;height:600px;">
-	 <img src="Images/DomainDescription3.png" alt="Title" style="width:1000px;height:600px;">
+	 <textarea id="w3review" name="w3review" rows="40" cols="136">
+
+
+//This function checks each node that can be domained within the range
+    public HashSet<CombatNode> GetNodesInRange(List<CombatNode> aCells, CombatNode aNodeHeuristicIsBasedOff, int aRange)
+    {
+	
+        cachedPaths = new Dictionary<CombatNode, List<CombatNode>>();
+
+//Getting the nodes 
+        var paths = cachePaths(aCells, aNodeHeuristicIsBasedOff,
+            m_Creature.m_Domain.CheckIfNodeIsClearAndReturnNodeIndex);
+			
+// Looping through each node to check the heuristic cost
+        foreach (var key in paths.Keys)
+        {
+            var path = paths[key];
+
+            var pathCost = path.Sum(c => 1);
+            key.m_Heuristic = pathCost;
+            if (pathCost <= aRange)
+            {
+                cachedPaths.Add(key, path);
+            }
+     }
+
+     return new HashSet<CombatNode>(cachedPaths.Keys);
+
+
+
+
+-----------------------------------------------------------------------------------------
+
+
+
+//The function that is used at the end when we have the nodes that can be domained
+    public void ActivateDomain()
+    {
+
+//Loop through the nodes that will now be domained
+        foreach (CombatNode node in m_NodeInDomainRange)
+        {
+            node.m_DomainCombatNode = CombatNode.DomainCombatNode.Domain;
+            node.DomainOnNode = m_Creature.m_Domain;
+			node.RemoveWalkableArea(CombatNode.CombatNodeAreaType.Domainable);
+
+//Check to see if there is a creature on the node to be domained
+            if (node.m_CreatureOnGridPoint != null)
+            { 
+                node.DomainOnNode.DomainEffect(ref node.m_CreatureOnGridPoint);
+                node.m_CreatureOnGridPoint.DomainAffectingCreature = m_Creature.m_Domain.DomainName;
+                
+            }
+            
+//Transfering the new texture to be the same as this creatures domain
+            node.DomainTransfer(m_Creature.m_Domain.m_DomainTexture);
+        }
+        
+
+//Checks if two domains are right beside each other to clash
+        foreach (CombatNode node in m_NodeInDomainRange)
+        {
+            node.DomainClashing();
+        }
+    }
+
+
+
+	</textarea>
 	 
-	 	 <p>
-		<b>Gameplay Example</b>
-	 
-	 </p>
-	 
-     <iframe width="1000" height="315" src="https://www.youtube.com/embed/movpO3WbKYY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 		  
+		  
+		        <p>
+		<b>Gameplay Example</b>
+	 </p>
+	  
+<iframe width="975" height="315" src="https://www.youtube.com/embed/movpO3WbKYY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </details>
 
       </article>
-      
+      </div>
+
 
 </section>
 </body>
-
 
 	   <p style="color:Black;font-size:35px;">
 	 
 		Memoria
 	 
      </p>
-	 <ul>
-		<li>
+
 	 <p>	
 	    Another original feature is the Memoria system. 
 	    When an enemy dies they leave behind their memoriess and skills, represented by a floating blue soul called Memoria.
 	    When a character collects an enemy's Memoria, they can choose between three of the skills the former enemy possessed.
 	 </p>
-	 </ul>
-		</li>
-	 
-	 	 <body>
+
+		
+		<!--Memoria Start-->
+<div id="demobox">
+	<body>
     <section>
       <article>
         <details>
+		
+			 
+	
           <summary>Memoria Code</summary>
+		   
+     </p>
  	  <p>
-		Insert text and examples here
+		When a creature is iniitally spawned, it has a set loottable.When the Creature dies it gets pushed to spawn a memoria object
+		in the scene with attached references to the skills completely divorced from the enemy that is now deleted.
+		
 	 </p>
 	 
 
@@ -151,20 +233,134 @@
 	 
 	 </p>
 	 
-	 <img src="Images/DomainDescription.png" alt="Title" style="width:1000px;height:600px;">
-	 <img src="Images/DomainDescription2.png" alt="Title" style="width:1000px;height:600px;">
-	 <img src="Images/DomainDescription3.png" alt="Title" style="width:1000px;height:600px;">
+	 <textarea id="w3review" name="w3review" rows="40" cols="136">
+	 
+	 
+//Character Class
+    void Start()
+    {
+	//Setting Default Values
+        CurrentHealth = 30;
+        MaxHealth = 30;
+        CurrentMana = 10;
+        MaxMana = 10;
+        Strength = 75;
+        Magic = 40;
+        Hit = 20;
+        Evasion = 20;
+        Defence = 20;
+        Resistance = 20;
+
+
+// If the creature has no unique name get one from name lookup table
+        if (Name == "No Name")
+        {
+            Name = GameManager.Instance.m_NameGenerator.GetName();
+            transform.name = Name;
+        }
+
+//Default Motifiers from Super class
+        SetCreature();
+
+//Getting Skills from Skill Lookup table that has an intance of every skill
+        m_Attack = m_CreatureSkillList.SetSkills(SkillList.SkillEnum.Attack);
+                
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.HolyWater));
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.ShadowBlast));
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.PheonixSpirit));
+        m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.icerain));
+
+
+//Memoria Lookup table for what the enemy drops on death
+        m_SkillLootTable.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.FireBall));
+        m_SkillLootTable.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.HolyWater));
+        m_SkillLootTable.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.Restrict));
+        
+
+//Setting default turn size        
+        AmountOfTurns = 1;
+
+//Getting the movement type such as Flying or Standard
+        m_CreaturesMovementType = m_MovementList.ReturnMovementType(MovementList.MovementCategories.Normal);
+
+//Get the model of the creature from this direct link
+        Model = (GameObject)Resources.Load("Objects/Battle/Enemy/Forest/RedKnights/Pref_RedKnight_Phase1", typeof(GameObject));
+
+        m_Texture = (Material)Resources.Load("Materials/Portrait/Material_GreenSlime", typeof(Material));
+
+
+//Setting Enemy 
+        charactertype = Charactertype.Enemy;
+		
+//Setting Elemental strengths and weaknesses
+        elementalStrength = ElementalStrength.Water;
+        elementalWeakness = ElementalWeakness.Fire;
+    }
+
+-----------------------------------------------------------------------------------------
+
+
+//Overrided function from base Creature
+    public override void Death()
+    {
+        base.Death();
+		
+		//Resetting the node the enemy died on
+        Grid.Instance.GetNode(m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y).m_CreatureOnGridPoint = null;
+
+        Grid.Instance.GetNode(m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y).m_IsCovered = false;
+        
+		
+		//Spawning the Memoria at the position he died and sends the loot table
+        Grid.Instance.GetNode(m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y).SpawnMemoria(m_SkillLootTable);
+        
+		
+		//Removes the game object from scene
+        Destroy(gameObject);
+    }
+
+
+------------------------------------------------------------------------------------------------
+
+//individual node spawns the Memoria
+    public void SpawnMemoria(List<Skills> a_Skills)
+    {
+	
+//Grabs Memoria from objectpool
+        m_MemoriaOnTop = CombatManager.Instance.ReturnMemoria();
+ 
+ //Sets the position for the in game model based off a set constant
+        m_MemoriaOnTop.transform.position =
+            new Vector3( transform.position.x , transform.position.y  + Constants.Constants.m_HeightOffTheGrid , transform.position.z);
+
+
+//Attaches the Skill Loot table
+        m_MemoriaOnTop.AttachSkills(a_Skills);
+
+//Sets its default position in the grid
+        m_MemoriaOnTop.m_NodePosition = m_PositionInGrid;
+
+//Sets the walking type to Memoria so when a creature walks on it the Memoria ui will be pushed
+        m_WalkOnTopTriggerTypes = WalkOntopTriggerTypes.Memoria;
+
+    }
+
+
+	</textarea>
+	 
+
 		  
 		  
 		        <p>
 		<b>Gameplay Example</b>
 	 </p>
 	  
-	  <iframe width="1000" height="315" src="https://www.youtube.com/embed/ISHEaCljIag" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	  <iframe width="975" height="315" src="https://www.youtube.com/embed/ISHEaCljIag" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </details>
 
       </article>
-      
+      </div>
+
 
 </section>
 </body>

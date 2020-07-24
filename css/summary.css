@@ -1,21 +1,41 @@
  summary::-webkit-details-marker {
- color: #00ACF3;
+ color: #ffffff;
  font-size: 125%;
  margin-right: 2px;
 }
 summary:focus {
 	outline-style: none;
+	color: #ffffff;
 }
 article > details > summary {
 	font-size: 28px;
 	margin-top: 16px;
+	color: #ffffff;
 }
 details > p {
 	margin-left: 24px;
+	color: #ffffff;
 }
 details details {
 	margin-left: 36px;
+	color: #ffffff;
 }
 details details summary {
 	font-size: 16px;
+	color: #ffffff;
+}
+
+#demobox {
+  background-color: #404040 ;
+}
+
+#MarginedText {
+  margin: 35px;
+  padding-left: 40px;
+}
+
+#demobox {
+  background-color: #404040 ;
+  padding: 10px ;
+  border: 1px solid green ;
 }
