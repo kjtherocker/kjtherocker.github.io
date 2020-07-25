@@ -92,9 +92,9 @@
      </p>
  	 <p>
 	 
-		Once I get the list of avaliable nodes that can be activated, Once, I get the list of avaliable nodes that can be activated I loop through them all and by using the character's reference to his 
-		Domain class I get the correct texture,name and Domain Effect. I tell each of the nodes then to communicate with the shader to dissolve
-		into the new texture.
+		At the start of the sequence I get the list of avaliable nodes that can be activated. Then I loop through all the nodes and by 
+		using the character's reference to his Domain class, I get the correct texture, name and Domain effect.
+		Now that the node has the information on the Domain; each of the nodes then communicate with the shader to dissolve into the new texture.
 		
 		
 	 </p>
@@ -220,8 +220,8 @@
 		   
      </p>
  	  <p>
-		When a creature is iniitally spawned, it has a set loottable.When the Creature dies it gets pushed to spawn a memoria object
-		in the scene with attached references to the skills completely divorced from the enemy that is now deleted.
+		When a creature is iniitally spawned, it has a set loot table .When the Creature is killed in combat it gets pushed to spawn a memoria object
+		in the scene. Attached with references to the skills completely divorced from the enemy that is now deleted.
 		
 	 </p>
 	 
@@ -426,49 +426,7 @@
  
 	  </p>
 	  
-	  <div id="demobox">
-	<body>
-    <section>
-      <article>
-        <details>
-		
-			 
-	     <!-- GamePlay Programmer-->
-          <summary>Gameplay Programmer</summary>
-		   
-     </p>
- 	  <p>
-		 As a Gameplay Programmer I created intricate boss Ai. The bosses were designed with a giant state machine of the actions they will execute
-	  and a complex web of when they would accomplish those actions.
-		
-	 </p>
-	 
 
-	 
-	 
-	 	 <p>
-		<b>Code Example</b>
-	 
-	 </p>
-	 
-	 <textarea id="w3review" name="w3review" rows="40" cols="136">
-	 
-
-
-	</textarea>
-	 
-
-		  
-		 
-	  
-        </details>
-
-      </article>
-      </div>
-
-
-</section>
-</body>
 	  
 	  
 
@@ -565,10 +523,12 @@ Shader "OdellWaterShader" {
 		COMPUTE_EYEDEPTH(o.eyeDepth);
 		half offsetvert = ((v.vertex.x * v.vertex.x) + (v.vertex.z * v.vertex.z));
 		half offsetvert2 = v.vertex.x + v.vertex.z;
+		
+// Calculating the waves time speed and frequency
 		half value0 = _Scale * sin(_Time.w * _Speed * _Frequency + offsetvert2);
 
-	
-			//NormalWave
+
+//Moving the vertex and normals to the new wave
 		v.vertex.y += value0;
 		v.normal.y += value0;
 		o.customValue += value0;
@@ -576,23 +536,28 @@ Shader "OdellWaterShader" {
 	}
 
 	void surf(Input IN, inout SurfaceOutputStandard o) {
-		// Albedo comes from a texture tinted by color
+// Albedo comes from a texture tinted by color
 		fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
 		o.Albedo = c.rgb;
-		// Metallic and smoothness come from slider variables
+// Metallic and smoothness come from slider variables
 		o.Metallic = _Metallic;
 		o.Smoothness = _Glossiness;
 
+
+//Gets the camera depth buffer to calculate the rim
 		float CameraDepth = SAMPLE_DEPTH_TEXTURE_PROJ(_CameraDepthTexture, UNITY_PROJ_COORD(IN.screenPos));
 		float SceneDepth = LinearEyeDepth(CameraDepth);
 		float partZ = IN.eyeDepth;
 
 		float fade = 1.0;
 		if (CameraDepth > 0.0) // Make sure the depth texture exists
+//If the cameradepth is greater then create the rim
 			fade = saturate(_InvFade * (SceneDepth - partZ));
 		o.Alpha = c.a * fade; //(original line)
-		//the rest are lines I've input
+		
+//Final Input
 		o.Alpha = _WaterAlpha;
+		
 		if (fade < _FadeLimit)
 		o.Albedo = c.rgb * fade + _BlendColor * (1 - fade);
 	}
@@ -603,7 +568,7 @@ Shader "OdellWaterShader" {
 	</textarea>
 	 
 
-		  
+		  <img src="Images/Fallen1.gif" width="980" height="400">
 		 
 	  
         </details>
@@ -615,7 +580,94 @@ Shader "OdellWaterShader" {
 </section>
 </body>
 	  
+	  <div id="demobox">
+	<body>
+    <section>
+      <article>
+        <details>
+		
+			 
+	     <!-- GamePlay Programmer-->
+          <summary>Gameplay Programmer</summary>
+		   
+     </p>
+ 	  <p>
+		 As a Gameplay Programmer I created intricate boss Ai. The bosses were designed with a giant state machine of the actions they will execute
+	  and a complex web of when they would accomplish those actions.
+		
+	 </p>
+	 
 
+	 
+	 
+	 	 <p>
+		<b>Code Example</b>
+	 
+	 </p>
+	 
+	 <textarea id="w3review" name="w3review" rows="40" cols="136">
+//the initial method called when starting the attack
+            public void StartAttack()
+            {
+                
+//Setting up the time before the damage collider is turned on or off
+                Timer TimeUntilColliderIsOn = Timer(4.0f,SetColliderState(true));
+ 
+                TimeUntilColliderIsOn.StartTimer();
+                
+                Timer TimeUntilColliderIsOff = Timer(7.0f,SetColliderState(false));
+ 
+                TimeUntilColliderIsOff.StartTimer();
+                
+                
+//The time until the entire action is finished getting the specific length of the animation
+
+                AnimationClip[] clips = m_CreatureAnimator.runtimeAnimatorController.animationClips;
+
+                float TongueAttackanimationLength = clips[attackAnimationClipNumberInAOC].length;
+                
+                Timer FinishTimer = Timer(TongueAttackanimationLength,OnFinish());
+ 
+                FinishTimer.StartTimer();
+                
+ //Telling the animator to execute the attack
+                
+                m_CreaturesAnimator.SetBool("b_OdellTongueAttack", true);
+            }
+			
+			
+-------------------------------------------------------------------------------------------------------------
+
+            public void SetColliderState(bool aCollider)
+            {
+                //Sets colliders state
+                m_TongueColliderState = aCollider;
+            }
+
+
+-------------------------------------------------------------------------------------------------------------
+            public void OnFinish()
+            {
+                //Tells the behaviour that the action is done
+                m_CurrentBehaviour.ActionIsFinished();
+            }
+
+
+	</textarea>
+	 
+
+		  
+	<iframe width="980" height="315" src="https://www.youtube.com/embed/X7-5bijzRQI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ 
+	  
+        </details>
+
+      </article>
+      </div>
+
+
+</section>
+</body>
 
 	  <div id="demobox">
 	<body>
@@ -649,14 +701,14 @@ Shader "OdellWaterShader" {
 		
 	 </p>
 	 
-	<img src="Images/Mockup1.png" alt="Title">
+	<img src="Images/Mockup1.png" alt="Title" width="980" height="700">
 	
 	
   <p>
 		Final
 		
 	 </p>
-<img src="Images/Final1.png" alt="Title">
+<img src="Images/Final1.png" alt="Title" width="980" height="700">
 
 
 
@@ -670,14 +722,14 @@ Shader "OdellWaterShader" {
 		Mockup	
 	</p>
 	 
-	<img src="Images/Mockup2.png" alt="Title">
+	<img src="Images/Mockup2.png" alt="Title" width="980" height="700">
 	
 	
 	<p>
 		Final
 		
 	</p>
-<img src="Images/Final2.png" alt="Title">
+<img src="Images/Final2.png" alt="Title" width="980" height="700">
 
 
 
@@ -697,7 +749,6 @@ Shader "OdellWaterShader" {
 	  people with hierarchy was a challenge but in the end we persisted and created a great work that we can all be proud of.
 	  </p>
 
-	  <iframe width="1000" height="315" src="https://www.youtube.com/embed/X7-5bijzRQI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
       <div class="gallery items-3">
         <div id="item-4" class="control-operator"></div>
@@ -740,11 +791,225 @@ Shader "OdellWaterShader" {
       <div class="tag tag-yellow">Only Programmer</div>
 
       <p>
-       Twilights Call is a Turnbased strategy game Created by me and my partner Stefano Pinto over the summer of 2018.
-	   I did all of the code for the game and my partner made all the models. In the game you can cast a large amount of spells. 
-	   Each one has an elemental type, each creature has an elemental Strength and Weakness. 
-	   In order to beat the game you need to exploit the weaknesses of the enemys.
+       <b>Twilight's Call: Original</b> is a Turnbased strategy game Created by me and my partner Stefano Pinto over the summer of 2018.
+	   I did all of the code for the game and my partner made all the models. 
 	   </p>
+	   
+	   
+	   
+      <p>
+       The original Twilights call is a recreation of Shin Megami Tensei: Nocturnes, combat system known as the Press Turn System.
+	   Each enemy has different strengths and weaknesses that the player can abuse to change the turn order. The combat is alot more 
+	   dyamic then most turn based games giving the player more options in combat.
+	   </p>
+	   
+	   	  
+	  <div id="demobox">
+	<body>
+    <section>
+      <article>
+        <details>
+		
+			 
+	     <!-- GamePlay Programmer-->
+          <summary>Camera Manager</summary>
+		   
+     </p>
+ 	  <p>
+		One of the harder things to get right was a Camera manager that would accurately go to the positions I desired.
+		I created a switch statement with a enum to control what state the camera should be.
+		
+	 </p>
+	 
+
+	 
+	 
+	 	 <p>
+		<b>Code Example</b>
+	 
+	 </p>
+	 
+	 <textarea id="w3review" name="w3review" rows="40" cols="136">
+
+
+
+// Switch statement connected to an enum of camera states
+        switch (m_cameraState)
+        {
+		
+		//On nothing do nothing
+            case CameraState.Nothing:
+
+
+                break;
+
+//Getting the normal state of right behind the player
+            case CameraState.Normal:
+                if (m_Grid.m_GridPathArray != null)
+                {
+                    m_CreatureTheCameraIsOn = m_Creature.ModelInGame.transform.position;
+
+                    transform.position = Vector3.Lerp(transform.position, new Vector3(
+                        m_CreatureTheCameraIsOn.transform.position.x + NormalOffset.x,
+                        m_CreatureTheCameraIsOn.transform.position.y +  NormalOffset.y,
+                        m_CreatureTheCameraIsOn.transform.position.z -  NormalOffset.z), Time.deltaTime * 2);
+                }
+
+     
+
+                PlayerUiSelection();
+
+                break;
+
+//When a player moves the camera follows
+            case CameraState.PlayerMovement:
+
+   
+                   transform.position = Vector3.Lerp(transform.position, new Vector3(
+                       m_Creature.ModelInGame.transform.position.x + MovementOffset.x,
+                       m_Creature.ModelInGame.transform.position.y + MovementOffset.y,
+                       m_Creature.ModelInGame.transform.position.z - MovementOffset.z), Time.deltaTime * 2);
+               
+
+
+                break;
+
+
+//When the player is attacking
+            case CameraState.PlayerAttack:
+       
+				transform.position = Vector3.Lerp(transform.position, new Vector3(
+                       m_Creature.ModelInGame.transform.position.x + MovementOffset.x,
+                       m_Creature.ModelInGame.transform.position.y + MovementOffset.y,
+                       m_Creature.ModelInGame.transform.position.z - MovementOffset.z), Time.deltaTime * 2);
+
+                break;
+
+
+//When the enemy moves
+
+            case CameraState.EnemyMovement:
+                if (m_Grid.m_GridPathArray != null)
+                {
+      
+                    transform.position = Vector3.Lerp(transform.position, new Vector3(
+                        m_Creature.ModelInGame.transform.position.x + MovementOffset.x,
+                        m_Creature.ModelInGame.transform.position.y + MovementOffset.y,
+                        m_Creature.ModelInGame.transform.position.z - MovementOffset.z), Time.deltaTime * 2);
+                }
+
+                break;
+
+            case CameraState.EnemyAttack:
+
+
+                break;
+        }
+
+
+	</textarea>
+	 
+
+	  
+        </details>
+
+      </article>
+      </div>
+
+
+</section>
+</body>
+
+
+	  <div id="demobox">
+	<body>
+    <section>
+      <article>
+        <details>
+		
+			 
+	     <!-- UI Manager-->
+          <summary>Ui Manager</summary>
+		   
+     </p>
+ 	  <p>
+		A turn based strategy game is mostly User interface so creating a strong manager was something I set out to accomplish.
+		The Ui Manager is a singleton that has a reference to each of the different Ui screens. Attached in a Dicitionary like list
+		a key of an enum is placed of each ui screen and a value of the screen we are pushing.
+		
+	 </p>
+	 
+
+	 
+	 
+	 	 <p>
+		<b>Code Example</b>
+	 
+	 </p>
+	 
+	 <textarea id="w3review" name="w3review" rows="40" cols="136">
+
+
+
+//Takes in an Enum type as an argument such as Screen.CommandBoard
+    public void PushScreen(Screen aScreen)
+    {
+
+
+//Gets the screen from the list like dicitionary
+        UiScreen screenToAdd = m_UiScreens[(int)aScreen];
+//We tell the screen to do its push
+        screenToAdd.OnPush();
+
+
+
+        Debug.Log(screenToAdd.ToString());
+
+//Add this screen to the stack for easy removal and management
+        m_ScreenStack.Add(new KeyValuePair<Screen, UiScreen>(aScreen, screenToAdd));
+        m_ScreenStack[m_ScreenStack.Count - 1].Value.m_InputActive = true;
+    }
+
+--------------------------------------------------------------------------------------------
+
+//Pop Takes in no arguements because we want to remove whatever is on top without knowing whats on top
+    public void PopScreen()
+    {
+	
+        if (m_LastScreen.Count > 1)
+        {
+            m_LastScreen.RemoveAt(0);
+        }
+
+//Keeping track of what was the last screen that was removed
+        m_LastScreen.Add(m_ScreenStack[m_ScreenStack.Count - 1].Key);
+		
+//Telling the top of the stack to do its pop method
+        m_ScreenStack[m_ScreenStack.Count - 1].Value.OnPop();
+//Finally remove the screen from the stack
+        m_ScreenStack.RemoveAt(m_ScreenStack.Count - 1);
+       
+    }
+
+
+	</textarea>
+	 
+
+
+        </details>
+
+      </article>
+      </div>
+
+
+</section>
+</body>
+
+
+<p>
+<b>Twilight's Call: Original</b> was a great test of my skills for a second year game development student.
+ I learned alot about different Design Patterns and how best to implement them into functional game code.
+</p>
 
      <iframe width="1000" height="315" src="https://www.youtube.com/embed/7mo5eiskmc4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
