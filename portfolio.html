@@ -261,6 +261,8 @@ Shader "Custom/Dissolve" {
 
             if (SlicedTexture < _BurnSize && _SliceAmount > 0) 
             {
+
+
 //The first texture will now be burned into the second texture during the dissolve
                 o.Emission = tex2D(_BurnRamp, float2(SlicedTexture * (1 / _BurnSize), 0)) * _BurnColor * _EmissionAmount * c2;
             }
@@ -523,6 +525,92 @@ Shader "Custom/Dissolve" {
  
 	  </p>
 	  
+<div id="demobox">
+	<body>
+    <section>
+      <article>
+        <details>
+		
+			 
+	
+          <summary>Tools Programmer</summary>
+		   
+     </p>
+ 	  <p>
+		Created Debug manager to quickly execute parts of the bosses Ai for easy reiteration.
+		
+	 </p>
+	 
+
+	 
+	 
+	 	 <p>
+		<b>Code Example</b>
+	 
+	 </p>
+	 
+	 <textarea id="w3review" name="w3review" rows="40" cols="136">
+	 
+	 
+//Initializion of debug buttons	 
+    public void Init(string a_Name, DebugMenu a_DebugMenu, DebugButtonType a_DebugButtonType, Method a_Method)
+    {
+        m_Name = a_Name;
+        m_ButtonText.text = a_Name;
+        m_DebugMenu = a_DebugMenu;
+        m_DebugbuttonType = a_DebugButtonType;
+        m_Method = a_Method;
+		
+// Using a Lamdba mixed with a Delegate so when the button is clicked it will execute the method
+        m_ReferenceToButton.onClick.AddListener(() => m_Method());
+    } 
+	
+-----------------------------------------------------------------------------------------------------------------
+
+	
+//Setting A default debugging button
+	
+//Spawning the prefab of the button
+	    DebugButton DebugButton = Instantiate<DebugButton>(m_Prefab_DebugButton, m_MenuScreens[m_MenuScreens.Count - 1].gameObject.transform);
+        DebugButton.gameObject.transform.localPosition = new Vector3(ScreenX, ScreenY + i * Offset, 0);
+		
+		
+//Hooking up the method this button will call 
+        DebugButton.Init("Immortality On", this, DebugButton.DebugButtonType.DebugMenutype, m_Player.SetImmortalityToTrue);
+		
+		
+		
+		
+		
+-----------------------------------------------------------------------------------------------------------------
+		
+//Attaching the different Toad AI Move List gotten from the list of Enums
+		for (int i = 0; i < m_ToadAttackMoves.Length; i++)
+        {
+         ToadDebugButton toadbutton = Instantiate<ToadDebugButton>(m_Prefab_DebugToadButton, m_MenuScreens[m_MenuScreens.Count - 1].gameObject.transform);
+         toadbutton.gameObject.transform.localPosition = new Vector3(ScreenX, ScreenY + i * Offset, 0);
+         toadbutton.Init(i, m_ToadAttackMoves[i], m_ToadReference);
+        }
+        
+
+	</textarea>
+	 
+
+		  
+		  
+		        <p>
+		<b>Gameplay Example</b>
+	 </p>
+	  
+	  <iframe width="975" height="315" src="https://www.youtube.com/embed/ISHEaCljIag" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </details>
+
+      </article>
+      </div>
+
+
+</section>
+</body>
 
 	  
 	  
@@ -702,53 +790,94 @@ Shader "OdellWaterShader" {
 	 
 	 </p>
 	 
-	 <textarea id="w3review" name="w3review" rows="40" cols="136">
-//the initial method called when starting the attack
-            public void StartAttack()
+	 <textarea id="w3review" name="w3review" rows="40" cols="150">
+   public KingShieldCharge(AIController aAIController) : base(aAIController)
+    {
+        m_KingChargeTimer = Services.TimerManager.CreateTimer("m_KingChargeTimer", ChargeDuration, false);
+        m_KingChargeDelayTimer = Services.TimerManager.CreateTimer("m_KingChargeDelayTimer", ChargeDelay, false);
+    }
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+
+    public override void Start()
+    {
+
+
+        // Get the king's starting position
+        m_PreMovePosition = ((AIKingController)m_AIController).transform.position;
+
+        // Set hit and charging to false
+        m_AlreadyHit = false;
+        m_Charging = false;
+
+        // Setup the timers
+        m_KingChargeDelayTimer.Restart();
+
+        // Start the animation
+        ((AIKingController)m_AIController).m_Animator.SetTrigger("Charge");
+
+    }
+
+--------------------------------------------------------------------------------------------------------------------------
+
+// Update is called once per frame
+    public override void Update()
+    {
+// If the delay timer is running
+        if(m_KingChargeDelayTimer.IsRunning() == true)
+        {
+// Turn to look at the player
+            ((AIKingController)m_AIController).TurnToPlayer();
+        }
+
+// If the delay is done and the king isin't charging
+        if (m_KingChargeDelayTimer.IsFinished() && m_Charging == false)
+        {
+// Set charging to true and start the charge timer
+            m_Charging = true;
+            m_KingChargeTimer.Restart();
+
+// Sets the target's position to the Player's position and 
+            m_TargetPosition = ((AIKingController)m_AIController).transform.position + (((AIKingController)m_AIController).transform.forward * (((AIKingController)m_AIController).GetDistanceToPlayer() + m_ChargeDistanceBehindPlayer));
+        }
+
+// If the king is charging
+        if (m_KingChargeTimer.IsRunning() && m_Charging == true)
+        {
+// CHARGE!!!!!!
+            ((AIKingController)m_AIController).transform.position = Vector3.Lerp(m_PreMovePosition, m_TargetPosition, m_KingChargeTimer.GetPercentage());
+        }
+
+// If the king is done charging
+        if (m_KingChargeTimer.IsFinished() && m_Charging == true)
+        {
+ // If the animation is done
+            if (((AIKingController)m_AIController).m_Animator.GetCurrentAnimatorStateInfo(0).IsTag("ShieldEnd") && ((AIKingController)m_AIController).m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.98f || ((AIKingController)m_AIController).m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {
-                
-//Setting up the time before the damage collider is turned on or off
-                Timer TimeUntilColliderIsOn = Timer(4.0f,SetColliderState(true));
- 
-                TimeUntilColliderIsOn.StartTimer();
-                
-                Timer TimeUntilColliderIsOff = Timer(7.0f,SetColliderState(false));
- 
-                TimeUntilColliderIsOff.StartTimer();
-                
-                
-//The time until the entire action is finished getting the specific length of the animation
-
-                AnimationClip[] clips = m_CreatureAnimator.runtimeAnimatorController.animationClips;
-
-                float TongueAttackanimationLength = clips[attackAnimationClipNumberInAOC].length;
-                
-                Timer FinishTimer = Timer(TongueAttackanimationLength,OnFinish());
- 
-                FinishTimer.StartTimer();
-                
- //Telling the animator to execute the attack
-                
-                m_CreaturesAnimator.SetBool("b_OdellTongueAttack", true);
+// Attack is finished
+                ((AIKingController)m_AIController).CurrentActionFinished();
             }
-			
-			
--------------------------------------------------------------------------------------------------------------
+        }
 
-            public void SetColliderState(bool aCollider)
-            {
-                //Sets colliders state
-                m_TongueColliderState = aCollider;
-            }
+// If the king is charging, hit the player and hasn't already hit the player
+        if (m_Charging == true && ((AIKingController)m_AIController).m_KingChargeTrigger.m_IsPlayerinside == true && m_AlreadyHit == false)
+        {
+// Set hit to true
+            m_AlreadyHit = true;
 
+ // Deal Damage to player
+            Services.GameManager.Player.TakeDamage(Constants.KingSheildChargeDamage);
 
--------------------------------------------------------------------------------------------------------------
-            public void OnFinish()
-            {
-                //Tells the behaviour that the action is done
-                m_CurrentBehaviour.ActionIsFinished();
-            }
+// Set the force and radius
+            float Force = 100;
 
+// Push the player away
+            Services.GameManager.Player.MovementController.PushPlayer(((AIKingController)m_AIController).transform.position, Force);
+        }
+    }
+}
 
 	</textarea>
 	 
