@@ -219,11 +219,6 @@
       <div class="tag tag-yellow">Tools</div>
       <div class="tag tag-blue">Only Programmer</div>
 
-     <p style="color:Black;font-size:35px;">
-	 
-		Git Repo is now public.
-	 
-     </p>
 
 	 <p>
 			<b>Twilight's Call Tactics</b> is a Tactics Strategy game based on Fire Emblem and Disgaea programmed by me.
@@ -673,27 +668,424 @@ Shader "Custom/Dissolve" {
 <img src="Images/TCDungeonCrawler.png" alt="Title"  class="center" style="width:900px;height:250px;">
 
 
-	  <a href="https://github.com/kjtherocker/Tank-Game" target="_blank"><div class="tag-link">Click this for source code</div></a>
+	  <a href="https://github.com/kjtherocker/FPDungeonCrawler" target="_blank"><div class="tag-link">Click this for source code</div></a>
 	  
 	    <br/>
-	  <div class="tag tag-teal">Only Programmer</div>
-      <div class="tag tag-blue">C++</div>
+	  <div class="tag tag-teal">Personal Project</div>
+      <div class="tag tag-teal">Unity</div>
+      <div class="tag tag-blue">C#</div>
+      <div class="tag tag-yellow">Tools</div>
+      <div class="tag tag-blue">Only Programmer</div>
+
+
+
+
 
       <p>
-         <b>Currently Under construction</b>
+         <b>Twilight's Call DungeonCrawler</b>  is a DungeonCrawler based on games such as Mary Skelter and Shin Megami Tensei Strange Journey.
+	 </p>
+	 
+	 	 
+	  <p style="color:Black;font-size:35px;">
+		Combat
+      </p>
+
+	 
+	 
+	 <p>
+	 
+	 When the player reaches and enemy they will start an encounter. <b>Twilight's Call DungeonCrawler</b> uses a variation of the 
+	 press turn system popularised by Shin Megami Tensei Nocturne. Hitting the enemys weakness will give you more turns but hitting the
+	 enemys strength will make you lose your turns. The combat moves in a much more fervent pace and was a great choice to create engaging
+	 combat.
+	 
+	 </p>
+	  
+	  <div id="demobox">
+	<body>
+    <section>
+      <article>
+        <details>
+		
+			 
+	
+          <summary>Combat Code</summary>
+		   
+     </p>
+ 	  <p>
+		Each skill has its own contained use that we categories
+		
+	 </p>
+	 
+	 
+	 	 <p>
+		<b>Code Example</b>
+	 
+	 </p>
+	 
+	 <textarea id="w3review" name="w3review" rows="40" cols="136">
+
+public class Attack : Skills
+{
+
+
+
+    public override void Start()
+    {
+
+        m_ElementalType = ElementalType.Null;
+        m_SkillType = SkillType.Attack;
+        m_Damagetype = DamageType.Strength;
+        m_Damage = 110;
+        m_SkillName = "Attack";
+        m_SkillDescription = "Attack a single enemy";
+        m_AnimationName = "t_IsAttack";
+        m_SkillRange = 1;
+    }
+
+    // Update is called once per frame
+
+    public override List<IEnumerator> UseSkill(List<Creatures> aVictum, Creatures aAttacker )
+    {
+        List<IEnumerator> AllSkillActions = new List<IEnumerator>();
+
+        for (int i = 0; i < aVictum.Count; i++)
+        {
+            AllSkillActions.Add(aVictum[i].DecrementHealth(m_Damage + aAttacker.GetAllStrength() / 3, GetElementalType(),
+                0.1f, 0.1f, 1));
+        }
+
+        return AllSkillActions;
+    }
+    
+    public override IEnumerator UseSkill(Creatures aVictum, Creatures aAttacker )
+    {
+        return aVictum.DecrementHealth(m_Damage + aAttacker.GetAllStrength() /3, GetElementalType(),
+            0.1f, 0.1f, 1);
+    }
+}
+
+
+//Skill Execution Manager
+
+    public void ExecuteSkill(Skills aSkill, bool aSkillRange,int aSkillPosition, Creatures aAttacker)
+    {
+        aAttacker.CurrentMana -= aSkillRange ? aSkill.m_MultiTargetCost : aSkill.m_SingleTargetCost;
+        
+        //Single Target Attack
+        if (aSkill.m_SkillType == Skills.SkillType.Attack && !aSkillRange)
+        {
+            SingleTargetAttack(aSkill, aAttacker, aSkillPosition);
+        }
+
+        //Party Wide Attacks
+        if (aSkill.m_SkillType == Skills.SkillType.Attack && aSkillRange)
+        {
+            PartyWideAttack(aSkill, aAttacker);
+        }
+        
+        // Single target Heals
+        if (aSkill.m_SkillType == Skills.SkillType.Heal && !aSkillRange)
+        {
+            SingleTargetHeal(aSkill, aAttacker, aSkillPosition);
+        }
+        
+        // Party Wide Heals
+        if (aSkill.m_SkillType == Skills.SkillType.Heal && aSkillRange)
+        {
+            PartyWideHeal( aSkill,  aAttacker);
+        }
+        
+        // Single target Heals
+        if (aSkill.m_SkillType == Skills.SkillType.Buff && !aSkillRange)
+        {
+            SingleTargetBuff(aSkill, aAttacker, aSkillPosition);
+        }
+        
+        // Party Wide Heals
+        if (aSkill.m_SkillType == Skills.SkillType.Buff && aSkillRange)
+        {
+            PartyWideBuff( aSkill,  aAttacker);
+        }
+    }
+  
+  
+  
+ //Press Turn Manager
+ 
+    //This method will be used at the end when all is activated
+    public void ProcessTurn(List<PressTurnReactions> aAllTurnReactions)
+    {
+        
+
+        //Null Skills Consume all pressturns completely
+
+        foreach (PressTurnReactions reaction in aAllTurnReactions)
+        {
+            if (reaction == PressTurnReactions.Null)
+            {
+                NulledPressTurn();
+                return;
+            }
+        }
+        
+        
+        //If Dodged Consume two pressturns if empowered only take the empowered and the next token
+        
+        foreach (PressTurnReactions reaction in aAllTurnReactions)
+        {
+            if (reaction == PressTurnReactions.Dodge ||
+                reaction == PressTurnReactions.Strong )
+            {
+                DodgedPressTurn();
+                return;
+            }
+        }
+        
+        //If weakness is hit correctly then the turn that was used will be empowered
+        
+        foreach (PressTurnReactions reaction in aAllTurnReactions)
+        {
+            if (reaction == PressTurnReactions.Weak || 
+                reaction == PressTurnReactions.Pass)
+            {
+                WeaknessPressTurn();
+                return;
+            }
+        }
+        
+        
+        //Normal action Consume 1 empowered or normal pressturn
+        NormalPressTurn();
+        //Passing will turn a whole icon into a empowered one but will consume an empowered one if it is
+
+    }
+
+
+
+
+    
+	</textarea>
+	 
+
+		  
+		  
+		        <p>
+		<b>Gameplay Example</b>
+	 </p>
+	  
+	<img src="Images/DPMap.png" alt="Title" width="980" height="700">
+        </details>
+
+      </article>
+      </div>
+
+
+</section>
+</body>
+
+	 
+	 
+	 
+	 
+	  <p style="color:Black;font-size:35px;">
+		Level Editor
+      </p>
+
+	 
+	 
+	 <p>
+	 
+	 Each level is created with multiple <b>Floors</b>. Each floor is created using tools I have setup to make the entire system modular.
+	 
+	 </p>
+	  
+	  <div id="demobox">
+	<body>
+    <section>
+      <article>
+        <details>
+		
+			 
+	
+          <summary>LevelCreation</summary>
+		   
+     </p>
+ 	  <p>
+		Levels are generated in a grid and each number represents the amount of directions avaliable for the node.
+		This is done to modularly set up the player so it knows what directions is it can go to.
+		
+	 </p>
+	 
+	 
+	 	 <p>
+		<b>Code Example</b>
+	 
+	 </p>
+	 
+	 <textarea id="w3review" name="w3review" rows="40" cols="136">
+	 
+// This is the array that contains the floor, each number represents an avaliable direction
+
+     short tableinit[] =
+        {
+            0, 10, 15,  9, 10, 15,  9,  0,  2,  0,  0,  0,  0,  0,  0,  4, 11, 15,  3,  0, //1
+            4,  5,  5, 13, 14,  5,  5, 15,  5,  9, 11, 11, 11, 11, 11, 15,  9, 14, 11,  3, //2
+            0,  8,  5, 13,  8, 12,  7,  8,  5,  7,  0,  0,  0,  0,  0,  8, 13,  6,  0,  0, //3
+            10, 11, 7,  6,  0,  0,  0,  0,  6,  0,  0,  0,  0, 10, 15,  9,  6, 14, 15,  9, //4
+            6, 10, 15, 13,  0, 10,  9, 10,  5,  9, 10,  9,  0, 14,  5, 13,  6,  8,  5,  7, //5
+            6, 14, 12, 13,  2, 14,  5,  5,  5,  5,  5, 13,  0,  8,  5,  7,  6, 10,  5,  9, //6
+            6,  6,  0,  6,  6,  8,  7, 14,  5, 13,  8,  7,  0,  0, 14, 15, 13, 14,  5, 13, //7
+            6,  6,  0,  6,  6, 10,  9, 14,  5, 13, 10,  9,  0,  0,  8, 12, 13,  6,  6,  6, //8
+            6,  6,  0,  6,  6, 14,  5,  5,  5,  5,  5, 13,  0,  2, 10,  9,  8,  7,  6,  6, //9
+            6,  6,  0,  6,  6,  8,  7, 14,  5, 13,  8,  7,  0, 14,  5,  5, 11, 11,  7,  6, //10
+            6,  6,  0,  6,  6, 10,  9, 14,  5, 13, 10,  9,  0,  6,  8,  7, 10, 15,  9,  6, //11
+            6, 14, 15,  5, 13, 14,  5,  5,  5,  5,  5, 13,  0,  6, 10,  9,  6,  8,  7,  6, //12
+            6,  8, 12,  7,  1,  8,  7,  8,  5,  7,  8,  7,  0,  6,  8,  7,  5, 11,  9,  6, //13
+            8, 11, 15,  9,  0,  0,  4, 15,  5, 15,  3,  0,  0,  8,  9,  4, 13, 10, 13,  6, //14
+            10, 9, 14, 13,  0,  0,  0,  8,  5,  7,  0,  0,  0,  0, 14,  9,  6,  8,  7,  6, //15
+            8, 12, 12, 12, 11, 11, 11, 11, 12, 11, 11, 11, 15,  3, 14,  7,  8, 11, 11,  7, //16
+            0,  0,  0,  0,  0, 10,  9,  0,  0,  0,  0, 10,  5,  9,  8, 11, 11,  9,  0,  0, //17
+            0,  0,  0,  0,  0, 14,  5, 11, 15, 11, 11, 12,  5,  7,  0,  2,  0,  6,  0,  2, //18
+            0,  0,  0,  0,  0,  8,  7, 10,  5,  9, 10, 15, 13,  0,  0, 14, 11, 12, 11,  7, //19
+            0,  0,  0,  0,  0,  0,  0,  8, 12,  7,  8,  7,  1,  0,  0,  1,  0,  0,  0,  0  //20
+        //  1   2   3   4   5   6   7   8   9  10  11   12  13  14  15  16  17  18  19  20
+        }; 
+		
+// Floor Generator
+
+    public void SetLevelNodes(short[] aLevelBlueprint)
+    {
+        for (int x = 0; x < m_FloorCore.GridDimensionX; x++)
+        {
+            for (int y = 0; y < m_FloorCore.GridDimensionY; y++)
+            {
+                int LevelIndex = m_FloorCore.GetIndex(x, y);
+                //If there is no node then continue
+                if (aLevelBlueprint[LevelIndex] == (short) Floor.LevelCreationDirections.Empty)
+                {
+                    continue;
+                }
+
+                SpawnNode(x , y,LevelIndex );
+                
+                m_FloorNodes[LevelIndex].Initialize(aLevelBlueprint[LevelIndex]);
+            }
+        }
+    
+    }
+	
+	
+	public void SpawnNode(int aRow, int aColumn,int aIndex)
+    {
+
+        FloorNode tempFloorNode = Instantiate(m_FloorNodePrefab);
+         
+        m_FloorNodes[aIndex] =  tempFloorNode;
+
+        m_FloorNodes[aIndex].m_PositionInGrid = new Vector2Int(aRow,aColumn);
+        m_FloorNodes[aIndex].gameObject.transform.parent = transform;
+        m_FloorNodes[aIndex].gameObject.name  = aRow + " " + aColumn;
+        m_FloorNodes[aIndex].transform.position = new Vector3(4 * aRow, 0.5f, 4 * aColumn);
+        m_FloorNodes[aIndex].m_NodeFloorManager = this;
+
+        //  m_GridPathArray[x, y].m_Grid = m_Grid;
+    }
+	
+	
+//This function was shortened for the sake of it being an example	
+	public void SetWalkableDirections(short aWalkabledirections)
+	{
+	switch (aWalkabledirections)
+	{
+		case  CardinalNodeDirections::Up:
+			m_WalkableDirections.Add( CardinalNodeDirections::Up);
+		break;
+
+		case CardinalNodeDirections::Down:
+			m_WalkableDirections.Add( CardinalNodeDirections::Down);
+		break;
+
+		case  CardinalNodeDirections::Left:
+			m_WalkableDirections.Add( CardinalNodeDirections::Left);
+		break;
+
+		case  CardinalNodeDirections::Right:
+			m_WalkableDirections.Add( CardinalNodeDirections::Right);
+		break;
+
+		case  CardinalNodeDirections::AllSidesOpen:
+            m_WalkableDirections.Add( CardinalNodeDirections::Up);
+            m_WalkableDirections.Add( CardinalNodeDirections::Down);
+            m_WalkableDirections.Add( CardinalNodeDirections::Right);
+            m_WalkableDirections.Add( CardinalNodeDirections::Left);
+        break;
+	}
+	
+	SetLevelNode(m_WalkableDirections);
+	}
+	
+
+    
+	</textarea>
+	 
+
+		  
+		  
+		        <p>
+		<b>Gameplay Example</b>
+	 </p>
+	  
+	<img src="Images/DPMap.png" alt="Title" width="980" height="700">
+        </details>
+
+      </article>
+      </div>
+
+
+</section>
+</body>
+
+
+	 
+
+  <p>
+         <b>Twilight's Call DungeonCrawler</b> like Twilights Call Tactics is still currently in development but a large amount of the
+		 heavy lifting has been complete. If you are interested please take a look at the source code.
 	
 	 </p>
-
 	 
 
 
 
-     
-
-</section>
-</body>
 	  
+	  <div class="gallery items-10">
+        <div id="item-15" class="control-operator"></div>
+        <div id="item-16" class="control-operator"></div>
+        <div id="item-17" class="control-operator"></div>
+    
+         <figure class="item">
+          <img src="Images/Dungeon-1.png">
+        </figure>
+    
+        <figure class="item">
+          <img src="Images/Dungeon-2.png">
+        </figure>
+    
+        <figure class="item">
+          <img src="Images/Dungeon-3.png">
+        </figure>
+    
+        <div class="controls">
+          <a href="#item-15" class="control-button">•</a>
+          <a href="#item-16" class="control-button">•</a>
+          <a href="#item-17" class="control-button">•</a>
+        </div>
+      </div>
 
+
+
+     
 
       <!-- Fallen Night -->
 	  <div id="FALLEN"><a href="FALLEN"></a></div>
