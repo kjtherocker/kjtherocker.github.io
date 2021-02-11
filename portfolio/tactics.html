@@ -14,6 +14,11 @@
         <!-- Bootstrap Icons -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
+        <!-- Highlight JS code block highlighting -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/stackoverflow-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+
         <!-- Custom CSS -->
         <style>
             .hover-action {
@@ -31,7 +36,7 @@
             }
         </style>
     </head>
-    <body data-bs-spy="scroll" data-bs-target="#scroll-nav" data-bs-offset="0" tabindex="0">
+    <body>
 
         <!-- Navigation Bar -->
         <nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-lg" style="background-color: rgba(0, 0, 0, .85) !important; -webkit-backdrop-filter: saturate(180%) blur(20px) !important; backdrop-filter: saturate(180%) blur(20px) !important;">
@@ -54,16 +59,16 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link" href="/index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="portfolio.html">Portfolio</a>
+                        <a class="nav-link active" aria-current="page" href="/portfolio.html">Portfolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="resume.html">Resume</a>
+                        <a class="nav-link" href="/resume.html">Resume</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="workExp.html">Work Experience</a>
+                        <a class="nav-link" href="/workExp.html">Work Experience</a>
                     </li>
                     </ul>
                 </div>
@@ -71,6 +76,7 @@
         </nav><br/><br/><br/>
 
         <div class="container mt-5 mb-5">
+            <!-- Header and Source Buttons -->
             <div class="row">
                 <div class="col-lg-6">
                     <h1>Twilight's Call: Tactics</h1>
@@ -82,15 +88,313 @@
                 </div>
             </div>
 
+            <!-- Description of Project -->
             <div class="row mt-2 gx-5 gy-5">
                 <div class="col-lg-6">
-                    <img style="width: 100%; "src="../Images/TwilightsR_2.png">
+                    <iframe style="width: 100%; height: 40vh;" src="https://www.youtube.com/embed/movpO3WbKYY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="col-lg-6">
                     <strong>Twilight's Call Tactics</strong> is a Tactics Strategy game based on Fire Emblem and Disgaea programmed by me. The game is still in development, but updates are routinely posted on my <a href="https://twitter.com/Kjtherocker1">Twitter Account</a>.
                 </div>                
             </div>
 
+            <!-- Source Code -->
+            <div class="row mt-4 gx-5 gy-5">
+                <div class="col-lg-3">
+                    <h3 class="mt-3">Domain</h3> 
+                    <p>The unique gameplay feature of the game are that all the walkable ground in the game can be manipulated to both the player or enemy's advantage. This system is called "Domains". Each playable character has their own unique Domain and can coat the world in their respective colours. For example, the main character Sigma uses their Domain ability, Patchwork Chimera, to steal the Domain ability of anyone within their own.This offers great tactical weight and morphs every move you make into a miniature puzzle.</p>
+                </div>
+                <div class="col-lg-9">
+                    <pre>
+                        <code class="language-cs" style="width: 100%; height: 50vh;">
+// This function checks each node that can be domained within the range
+public HashSet&lt;CombatNode&gt; GetNodesInRange(List&lt;CombatNode&gt; aCells, CombatNode aNodeHeuristicIsBasedOff, int aRange)
+{
+    cachedPaths = new Dictionary&lt;CombatNode, List&lt;CombatNode&gt;&gt;();
+
+    // Getting the nodes 
+    var paths = cachePaths(aCells, aNodeHeuristicIsBasedOff,
+        m_Creature.m_Domain.CheckIfNodeIsClearAndReturnNodeIndex);
+        
+    // Looping through each node to check the heuristic cost
+    foreach (var key in paths.Keys)
+    {
+        var path = paths[key];
+
+        var pathCost = path.Sum(c =&gt; 1);
+        key.m_Heuristic = pathCost;
+        if (pathCost &lt;= aRange)
+        {
+            cachedPaths.Add(key, path);
+        }
+    }
+
+    return new HashSet&lt;CombatNode&gt;(cachedPaths.Keys);
+}
+
+-----------------------------------------------------------------------------------------
+
+// The function that is used at the end when we have the nodes that can be domained
+public void ActivateDomain()
+{
+
+    // Loop through the nodes that will now be domained
+    foreach (CombatNode node in m_NodeInDomainRange)
+    {
+        node.m_DomainCombatNode = CombatNode.DomainCombatNode.Domain;
+        node.DomainOnNode = m_Creature.m_Domain;
+        node.RemoveWalkableArea(CombatNode.CombatNodeAreaType.Domainable);
+
+        // Check to see if there is a creature on the node to be domained
+        if (node.m_CreatureOnGridPoint != null)
+        { 
+            node.DomainOnNode.DomainEffect(ref node.m_CreatureOnGridPoint);
+            node.m_CreatureOnGridPoint.DomainAffectingCreature = m_Creature.m_Domain.DomainName;
+            
+        }
+        
+        // Transfering the new texture to be the same as this creatures domain
+        node.DomainTransfer(m_Creature.m_Domain.m_DomainTexture);
+    }
+    
+
+    // Checks if two domains are right beside each other to clash
+    foreach (CombatNode node in m_NodeInDomainRange)
+    {
+        node.DomainClashing();
+    }
+}
+
+---------------------------------------------------------------------------------------------
+
+public void DomainTransfer(Material aDomainMaterial)
+{
+    m_DomainSwapAmount = 0;
+    
+    if (aDomainMaterial != null)
+    {
+        //Setting the materials that will be considered the second in the dissolve shader
+        m_MeshRenderer.materials[1].SetTexture(&quot;_SecTex&quot;, aDomainMaterial.mainTexture); 
+        m_MeshRenderer.materials[1].SetColor(&quot;_SecColor&quot;, aDomainMaterial.color);
+    }
+
+    StartCoroutine(DomainChangeAnimation(true));
+}
+    
+-------------------------------------------------------------------------------------------
+
+//Dissolve shader
+Shader &quot;Custom/Dissolve&quot; {
+    Properties {
+        _Color (&quot;Color&quot;, Color) = (1,1,1,1)
+        _MainTex (&quot;Albedo (RGB)&quot;, 2D) = &quot;white&quot; {}
+        _SecTex (&quot;Albedo (RGB)&quot;, 2D) = &quot;white&quot; {}
+        _SecColor (&quot;Color&quot;, Color) = (1,1,1,1)
+        _SliceGuide(&quot;Slice Guide (RGB)&quot;, 2D) = &quot;white&quot; {}
+        _SliceAmount(&quot;Slice Amount&quot;, Range(0.0, 1.0)) = 0
+    
+        _BurnSize(&quot;Burn Size&quot;, Range(0.0, 1.0)) = 0.15
+        _BurnRamp(&quot;Burn Ramp (RGB)&quot;, 2D) = &quot;white&quot; {}
+        _BurnColor(&quot;Burn Color&quot;, Color) = (1,1,1,1)
+    
+        _EmissionAmount(&quot;Emission amount&quot;, float) = 2.0
+    }
+    SubShader {
+        Tags { &quot;RenderType&quot;=&quot;Opaque&quot; }
+        LOD 200
+        Cull Off
+        CGPROGRAM
+        #pragma surface surf Lambert addshadow
+        #pragma target 3.0
+    
+        fixed4 _Color;
+        fixed4 _SecColor;
+        sampler2D _MainTex;
+        sampler2D _SecTex;
+        sampler2D _SliceGuide;
+        sampler2D _BumpMap;
+        sampler2D _BurnRamp;
+        fixed4 _BurnColor;
+        float _BurnSize;
+        float _SliceAmount;
+        float _EmissionAmount;
+    
+        struct Input {
+            float2 uv_MainTex;
+            float2 uv_SecTex;
+        };
+    
+    
+        void surf (Input IN, inout SurfaceOutput o) 
+        {
+        
+            // Grabbing the textures
+            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
+            fixed4 c2 = tex2D (_SecTex, IN.uv_SecTex) * _SecColor;
+            
+            // Getting the sliced version of the texture
+            half SlicedTexture = tex2D(_SliceGuide, IN.uv_MainTex).rgb - _SliceAmount;
+            
+            // Final Result is the inverse of the sliced texture
+            fixed4 Result =  !SlicedTexture;
+            
+            if(SlicedTexture &lt; 0)
+            {
+                o.Albedo = c2.rgb;
+            }
+            else
+            {
+                o.Albedo = c.rgb;
+            }
+            
+            if (SlicedTexture &lt; _BurnSize &amp;&amp; _SliceAmount &gt; 0) 
+            {
+                //The first texture will now be burned into the second texture during the dissolve
+                o.Emission = tex2D(_BurnRamp, float2(SlicedTexture * (1 / _BurnSize), 0)) * _BurnColor * _EmissionAmount * c2;
+            }
+
+            o.Alpha = c.a;
+        }
+        ENDCG
+    }
+    FallBack &quot;Diffuse&quot;
+}
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Source Code -->
+            <div class="row mt-2 gx-5 gy-5">
+                <div class="col-lg-9">
+                    <pre>
+                        <code class="language-cs" style="width: 100%; height: 50vh;">
+// Character Class
+void Start()
+{
+// Setting Default Values
+CurrentHealth = 30;
+MaxHealth = 30;
+CurrentMana = 10;
+MaxMana = 10;
+Strength = 75;
+Magic = 40;
+Hit = 20;
+Evasion = 20;
+Defence = 20;
+Resistance = 20;
+
+
+// If the creature has no unique name get one from name lookup table
+if (Name == &quot;No Name&quot;)
+{
+    Name = GameManager.Instance.m_NameGenerator.GetName();
+    transform.name = Name;
+}
+
+// Default Motifiers from Super class
+SetCreature();
+
+// Getting Skills from Skill Lookup table that has an intance of every skill
+m_Attack = m_CreatureSkillList.SetSkills(SkillList.SkillEnum.Attack);
+        
+m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.HolyWater));
+m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.ShadowBlast));
+m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.PheonixSpirit));
+m_Skills.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.icerain));
+
+
+// Memoria Lookup table for what the enemy drops on death
+m_SkillLootTable.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.FireBall));
+m_SkillLootTable.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.HolyWater));
+m_SkillLootTable.Add(m_CreatureSkillList.SetSkills(SkillList.SkillEnum.Restrict));
+
+
+// Setting default turn size        
+AmountOfTurns = 1;
+
+// Getting the movement type such as Flying or Standard
+m_CreaturesMovementType = m_MovementList.ReturnMovementType(MovementList.MovementCategories.Normal);
+
+// Get the model of the creature from this direct link
+Model = (GameObject)Resources.Load(&quot;Objects/Battle/Enemy/Forest/RedKnights/Pref_RedKnight_Phase1&quot;, typeof(GameObject));
+
+m_Texture = (Material)Resources.Load(&quot;Materials/Portrait/Material_GreenSlime&quot;, typeof(Material));
+
+
+// Setting Enemy 
+charactertype = Charactertype.Enemy;
+
+// Setting Elemental strengths and weaknesses
+elementalStrength = ElementalStrength.Water;
+elementalWeakness = ElementalWeakness.Fire;
+}
+
+-----------------------------------------------------------------------------------------
+
+// Overridden function from base Creature
+public override void Death()
+{
+base.Death();
+
+// Resetting the node the enemy died on
+Grid.Instance.GetNode(m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y).m_CreatureOnGridPoint = null;
+
+Grid.Instance.GetNode(m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y).m_IsCovered = false;
+
+// Spawning the Memoria at the position he died and sends the loot table
+Grid.Instance.GetNode(m_CreatureAi.m_Position.x, m_CreatureAi.m_Position.y).SpawnMemoria(m_SkillLootTable);
+
+// Removes the game object from scene
+Destroy(gameObject);
+}
+
+------------------------------------------------------------------------------------------------
+
+// individual node spawns the Memoria
+public void SpawnMemoria(List&lt;Skills&gt; a_Skills)
+{
+
+// Grabs Memoria from objectpool
+m_MemoriaOnTop = CombatManager.Instance.ReturnMemoria();
+
+// Sets the position for the in game model based off a set constant
+m_MemoriaOnTop.transform.position =
+    new Vector3( transform.position.x , transform.position.y  + Constants.Constants.m_HeightOffTheGrid , transform.position.z);
+
+// Attaches the Skill Loot table
+m_MemoriaOnTop.AttachSkills(a_Skills);
+
+// Sets its default position in the grid
+m_MemoriaOnTop.m_NodePosition = m_PositionInGrid;
+
+// Sets the walking type to Memoria so when a creature walks on it the Memoria ui will be pushed
+m_WalkOnTopTriggerTypes = WalkOntopTriggerTypes.Memoria;
+
+}
+                        </code>
+                    </pre>
+                </div>
+                <div class="col-lg-3">
+                    <h3 class="mt-3">Memoria</h3> 
+                    <p>Another original feature is the Memoria system. When an enemy dies they leave behind their memories and skills, represented by a floating blue soul called Memoria. When a character collects an enemy's Memoria, they can choose between three of the skills the former enemy possessed.</p>
+                </div>
+            </div>
+
+            <!-- Gallery -->
+            <h3>Gallery</h3>
+            <br/>
+            <div class="row gx-5 gy-5">
+                <div class="col-lg-4">
+                    <img style="width: 100%; "src="../Images/TwilightsR_1.png">
+                </div>
+                <div class="col-lg-4">
+                    <img style="width: 100%; "src="../Images/TwilightsR_2.png">
+                </div>
+                <div class="col-lg-4">
+                    <img style="width: 100%; "src="../Images/TwilightsR_3.png">
+                </div>
+            </div>
         </div>
     </body>
 </html>
