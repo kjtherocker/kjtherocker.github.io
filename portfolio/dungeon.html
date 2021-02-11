@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Kyle Johnson - Portfolio</title>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap Integration -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+        <!-- Bootstrap Icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+        <!-- Highlight JS code block highlighting -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/stackoverflow-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+
+        <!-- Custom CSS -->
+        <style>
+            .hover-action {
+                cursor: pointer;
+                transition: 0.5s ease;
+                height: 300px;
+                margin-bottom: 0 !important;
+            }
+
+            .hover-action:hover {
+                -webkit-transform: scale(0.95);
+                -ms-transform: scale(0.95);
+                transform: scale(0.95);
+                transition: 0.5s ease;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-lg" style="background-color: rgba(0, 0, 0, .85) !important; -webkit-backdrop-filter: saturate(180%) blur(20px) !important; backdrop-filter: saturate(180%) blur(20px) !important;">
+            <div class="container">
+                <!-- Home -->
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-joystick me-2" viewBox="0 0 16 16">
+                    <path d="M10 2a2 2 0 0 1-1.5 1.937v5.087c.863.083 1.5.377 1.5.726 0 .414-.895.75-2 .75s-2-.336-2-.75c0-.35.637-.643 1.5-.726V3.937A2 2 0 1 1 10 2z"/>
+                    <path d="M0 9.665v1.717a1 1 0 0 0 .553.894l6.553 3.277a2 2 0 0 0 1.788 0l6.553-3.277a1 1 0 0 0 .553-.894V9.665c0-.1-.06-.19-.152-.23L9.5 6.715v.993l5.227 2.178a.125.125 0 0 1 .001.23l-5.94 2.546a2 2 0 0 1-1.576 0l-5.94-2.546a.125.125 0 0 1 .001-.23L6.5 7.708l-.013-.988L.152 9.435a.25.25 0 0 0-.152.23z"/>
+                    </svg>
+                    <strong>Kyle Johnson</strong>
+                </a>
+
+                <!-- Mobile Support -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Menu Items -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/portfolio.html">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/resume.html">Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/workExp.html">Work Experience</a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </nav><br/><br/><br/>
+
+        <div class="container mt-5 mb-5">
+            <!-- Header and Source Buttons -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1>Twilight's Call: Dungeon Crawler</h1>
+                    <h6 style="color: #727272;">Personal Project, Unity, C#, Only Developer</h6>
+                </div>
+                <div class="col-lg-6">
+                    <a href="https://github.com/kjtherocker/Twilights-Call" class="btn btn-dark float-end mt-3 ms-2"><i class="bi bi-github me-1"></i> Source Code</a>
+                    <a href="https://github.com/kjtherocker/Kyle-Johnson-Code-Samples" class="btn btn-dark float-end mt-3 ms-2"><i class="bi bi-github me-1"></i> Code Samples</a>
+                </div>
+            </div>
+
+            <!-- Description of Project -->
+            <div class="row mt-2 gx-5 gy-5">
+                <div class="col-lg-6">
+					<iframe style="width: 100%; height: 40vh;"src="https://www.youtube.com/embed/05vff5Zk6q0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="col-lg-6">
+                    <strong>Twilight's Call DungeonCrawler</strong> is a DungeonCrawler based on games such as Mary Skelter and Shin Megami Tensei Strange Journey.
+                </div>                
+            </div>
+
+            <!-- Source Code -->
+            <div class="row mt-4 gx-5 gy-5">
+                <div class="col-lg-3">
+                    <h3 class="mt-3">Combat</h3> 
+                    <p> <b>Twilight's Call DungeonCrawler</b> uses a variation of the 
+						press turn system popularised by Shin Megami Tensei Nocturne. Hitting the enemys weakness will give you more turns but hitting the
+						enemys strength will make you lose your turns. The combat moves in a much more fervent pace and was a great choice to create engaging
+						combat.</p>
+                </div>
+                <div class="col-lg-9">
+                    <pre>
+                        <code class="language-cs" style="width: 100%; height: 50vh;">
+public class Attack : Skills
+{
+
+
+
+    public override void Start()
+    {
+
+        m_ElementalType = ElementalType.Null;
+        m_SkillType = SkillType.Attack;
+        m_Damagetype = DamageType.Strength;
+        m_Damage = 110;
+        m_SkillName = "Attack";
+        m_SkillDescription = "Attack a single enemy";
+        m_AnimationName = "t_IsAttack";
+        m_SkillRange = 1;
+    }
+
+    // Update is called once per frame
+
+    public override List<IEnumerator> UseSkill(List<Creatures> aVictum, Creatures aAttacker )
+    {
+        List<IEnumerator> AllSkillActions = new List<IEnumerator>();
+
+        for (int i = 0; i < aVictum.Count; i++)
+        {
+            AllSkillActions.Add(aVictum[i].DecrementHealth(m_Damage + aAttacker.GetAllStrength() / 3, GetElementalType(),
+                0.1f, 0.1f, 1));
+        }
+
+        return AllSkillActions;
+    }
+    
+    public override IEnumerator UseSkill(Creatures aVictum, Creatures aAttacker )
+    {
+        return aVictum.DecrementHealth(m_Damage + aAttacker.GetAllStrength() /3, GetElementalType(),
+            0.1f, 0.1f, 1);
+    }
+}
+
+
+//Skill Execution Manager
+
+    public void ExecuteSkill(Skills aSkill, bool aSkillRange,int aSkillPosition, Creatures aAttacker)
+    {
+        aAttacker.CurrentMana -= aSkillRange ? aSkill.m_MultiTargetCost : aSkill.m_SingleTargetCost;
+        
+        //Single Target Attack
+        if (aSkill.m_SkillType == Skills.SkillType.Attack && !aSkillRange)
+        {
+            SingleTargetAttack(aSkill, aAttacker, aSkillPosition);
+        }
+
+        //Party Wide Attacks
+        if (aSkill.m_SkillType == Skills.SkillType.Attack && aSkillRange)
+        {
+            PartyWideAttack(aSkill, aAttacker);
+        }
+        
+        // Single target Heals
+        if (aSkill.m_SkillType == Skills.SkillType.Heal && !aSkillRange)
+        {
+            SingleTargetHeal(aSkill, aAttacker, aSkillPosition);
+        }
+        
+        // Party Wide Heals
+        if (aSkill.m_SkillType == Skills.SkillType.Heal && aSkillRange)
+        {
+            PartyWideHeal( aSkill,  aAttacker);
+        }
+        
+        // Single target Heals
+        if (aSkill.m_SkillType == Skills.SkillType.Buff && !aSkillRange)
+        {
+            SingleTargetBuff(aSkill, aAttacker, aSkillPosition);
+        }
+        
+        // Party Wide Heals
+        if (aSkill.m_SkillType == Skills.SkillType.Buff && aSkillRange)
+        {
+            PartyWideBuff( aSkill,  aAttacker);
+        }
+    }
+  
+  
+  
+ //Press Turn Manager
+ 
+    //This method will be used at the end when all is activated
+    public void ProcessTurn(List<PressTurnReactions> aAllTurnReactions)
+    {
+        
+
+        //Null Skills Consume all pressturns completely
+
+        foreach (PressTurnReactions reaction in aAllTurnReactions)
+        {
+            if (reaction == PressTurnReactions.Null)
+            {
+                NulledPressTurn();
+                return;
+            }
+        }
+        
+        
+        //If Dodged Consume two pressturns if empowered only take the empowered and the next token
+        
+        foreach (PressTurnReactions reaction in aAllTurnReactions)
+        {
+            if (reaction == PressTurnReactions.Dodge ||
+                reaction == PressTurnReactions.Strong )
+            {
+                DodgedPressTurn();
+                return;
+            }
+        }
+        
+        //If weakness is hit correctly then the turn that was used will be empowered
+        
+        foreach (PressTurnReactions reaction in aAllTurnReactions)
+        {
+            if (reaction == PressTurnReactions.Weak || 
+                reaction == PressTurnReactions.Pass)
+            {
+                WeaknessPressTurn();
+                return;
+            }
+        }
+        
+        
+        //Normal action Consume 1 empowered or normal pressturn
+        NormalPressTurn();
+        //Passing will turn a whole icon into a empowered one but will consume an empowered one if it is
+
+    }
+
+
+
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Source Code -->
+            <div class="row mt-2 gx-5 gy-5">
+                <div class="col-lg-9">
+                    <pre>
+                        <code class="language-cs" style="width: 100%; height: 50vh;">
+	 
+// This is the array that contains the floor, each number represents an avaliable direction
+
+     short tableinit[] =
+        {
+            0, 10, 15,  9, 10, 15,  9,  0,  2,  0,  0,  0,  0,  0,  0,  4, 11, 15,  3,  0, //1
+            4,  5,  5, 13, 14,  5,  5, 15,  5,  9, 11, 11, 11, 11, 11, 15,  9, 14, 11,  3, //2
+            0,  8,  5, 13,  8, 12,  7,  8,  5,  7,  0,  0,  0,  0,  0,  8, 13,  6,  0,  0, //3
+            10, 11, 7,  6,  0,  0,  0,  0,  6,  0,  0,  0,  0, 10, 15,  9,  6, 14, 15,  9, //4
+            6, 10, 15, 13,  0, 10,  9, 10,  5,  9, 10,  9,  0, 14,  5, 13,  6,  8,  5,  7, //5
+            6, 14, 12, 13,  2, 14,  5,  5,  5,  5,  5, 13,  0,  8,  5,  7,  6, 10,  5,  9, //6
+            6,  6,  0,  6,  6,  8,  7, 14,  5, 13,  8,  7,  0,  0, 14, 15, 13, 14,  5, 13, //7
+            6,  6,  0,  6,  6, 10,  9, 14,  5, 13, 10,  9,  0,  0,  8, 12, 13,  6,  6,  6, //8
+            6,  6,  0,  6,  6, 14,  5,  5,  5,  5,  5, 13,  0,  2, 10,  9,  8,  7,  6,  6, //9
+            6,  6,  0,  6,  6,  8,  7, 14,  5, 13,  8,  7,  0, 14,  5,  5, 11, 11,  7,  6, //10
+            6,  6,  0,  6,  6, 10,  9, 14,  5, 13, 10,  9,  0,  6,  8,  7, 10, 15,  9,  6, //11
+            6, 14, 15,  5, 13, 14,  5,  5,  5,  5,  5, 13,  0,  6, 10,  9,  6,  8,  7,  6, //12
+            6,  8, 12,  7,  1,  8,  7,  8,  5,  7,  8,  7,  0,  6,  8,  7,  5, 11,  9,  6, //13
+            8, 11, 15,  9,  0,  0,  4, 15,  5, 15,  3,  0,  0,  8,  9,  4, 13, 10, 13,  6, //14
+            10, 9, 14, 13,  0,  0,  0,  8,  5,  7,  0,  0,  0,  0, 14,  9,  6,  8,  7,  6, //15
+            8, 12, 12, 12, 11, 11, 11, 11, 12, 11, 11, 11, 15,  3, 14,  7,  8, 11, 11,  7, //16
+            0,  0,  0,  0,  0, 10,  9,  0,  0,  0,  0, 10,  5,  9,  8, 11, 11,  9,  0,  0, //17
+            0,  0,  0,  0,  0, 14,  5, 11, 15, 11, 11, 12,  5,  7,  0,  2,  0,  6,  0,  2, //18
+            0,  0,  0,  0,  0,  8,  7, 10,  5,  9, 10, 15, 13,  0,  0, 14, 11, 12, 11,  7, //19
+            0,  0,  0,  0,  0,  0,  0,  8, 12,  7,  8,  7,  1,  0,  0,  1,  0,  0,  0,  0  //20
+        //  1   2   3   4   5   6   7   8   9  10  11   12  13  14  15  16  17  18  19  20
+        }; 
+		
+// Floor Generator
+
+    public void SetLevelNodes(short[] aLevelBlueprint)
+    {
+        for (int x = 0; x < m_FloorCore.GridDimensionX; x++)
+        {
+            for (int y = 0; y < m_FloorCore.GridDimensionY; y++)
+            {
+                int LevelIndex = m_FloorCore.GetIndex(x, y);
+                //If there is no node then continue
+                if (aLevelBlueprint[LevelIndex] == (short) Floor.LevelCreationDirections.Empty)
+                {
+                    continue;
+                }
+
+                SpawnNode(x , y,LevelIndex );
+                
+                m_FloorNodes[LevelIndex].Initialize(aLevelBlueprint[LevelIndex]);
+            }
+        }
+    
+    }
+	
+	
+	public void SpawnNode(int aRow, int aColumn,int aIndex)
+    {
+
+        FloorNode tempFloorNode = Instantiate(m_FloorNodePrefab);
+         
+        m_FloorNodes[aIndex] =  tempFloorNode;
+
+        m_FloorNodes[aIndex].m_PositionInGrid = new Vector2Int(aRow,aColumn);
+        m_FloorNodes[aIndex].gameObject.transform.parent = transform;
+        m_FloorNodes[aIndex].gameObject.name  = aRow + " " + aColumn;
+        m_FloorNodes[aIndex].transform.position = new Vector3(4 * aRow, 0.5f, 4 * aColumn);
+        m_FloorNodes[aIndex].m_NodeFloorManager = this;
+
+        //  m_GridPathArray[x, y].m_Grid = m_Grid;
+    }
+	
+	
+//This function was shortened for the sake of it being an example	
+	public void SetWalkableDirections(short aWalkabledirections)
+	{
+	switch (aWalkabledirections)
+	{
+		case  CardinalNodeDirections::Up:
+			m_WalkableDirections.Add( CardinalNodeDirections::Up);
+		break;
+
+		case CardinalNodeDirections::Down:
+			m_WalkableDirections.Add( CardinalNodeDirections::Down);
+		break;
+
+		case  CardinalNodeDirections::Left:
+			m_WalkableDirections.Add( CardinalNodeDirections::Left);
+		break;
+
+		case  CardinalNodeDirections::Right:
+			m_WalkableDirections.Add( CardinalNodeDirections::Right);
+		break;
+
+		case  CardinalNodeDirections::AllSidesOpen:
+            m_WalkableDirections.Add( CardinalNodeDirections::Up);
+            m_WalkableDirections.Add( CardinalNodeDirections::Down);
+            m_WalkableDirections.Add( CardinalNodeDirections::Right);
+            m_WalkableDirections.Add( CardinalNodeDirections::Left);
+        break;
+	}
+	
+	SetLevelNode(m_WalkableDirections);
+	}
+	
+                        </code>
+                    </pre>
+                </div>
+                <div class="col-lg-3">
+                    <h3 class="mt-3">Level Editor</h3> 
+                    <p> 
+					Each level is created with multiple <b>Floors</b>. Each floor is created using tools I have setup to make the entire system modular.
+					Levels are generated in a grid and each number represents the amount of directions avaliable for the node.
+					This is done to modularly set up the player so it knows what directions is it can go to.
+					</p>
+                </div>
+            </div>
+
+            <!-- Gallery -->
+            <h3>Gallery</h3>
+            <br/>
+            <div class="row gx-5 gy-5">
+                <div class="col-lg-4">
+                    <img style="width: 100%; "src="../Images/Dungeon-1.png">
+                </div>
+                <div class="col-lg-4">
+                    <img style="width: 100%; "src="../Images/Dungeon-2.png">
+                </div>
+                <div class="col-lg-4">
+                    <img style="width: 100%; "src="../Images/Dungeon-3.png">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
