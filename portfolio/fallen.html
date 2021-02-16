@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Kyle Johnson - Portfolio</title>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap Integration -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+        <!-- Bootstrap Icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+        <!-- Highlight JS code block highlighting -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/stackoverflow-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+
+        <!-- Custom CSS -->
+        <style>
+            .hover-action {
+                cursor: pointer;
+                transition: 0.5s ease;
+                height: 300px;
+                margin-bottom: 0 !important;
+            }
+
+            .hover-action:hover {
+                -webkit-transform: scale(0.95);
+                -ms-transform: scale(0.95);
+                transform: scale(0.95);
+                transition: 0.5s ease;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-lg" style="background-color: rgba(0, 0, 0, .85) !important; -webkit-backdrop-filter: saturate(180%) blur(20px) !important; backdrop-filter: saturate(180%) blur(20px) !important;">
+            <div class="container">
+                <!-- Home -->
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-joystick me-2" viewBox="0 0 16 16">
+                    <path d="M10 2a2 2 0 0 1-1.5 1.937v5.087c.863.083 1.5.377 1.5.726 0 .414-.895.75-2 .75s-2-.336-2-.75c0-.35.637-.643 1.5-.726V3.937A2 2 0 1 1 10 2z"/>
+                    <path d="M0 9.665v1.717a1 1 0 0 0 .553.894l6.553 3.277a2 2 0 0 0 1.788 0l6.553-3.277a1 1 0 0 0 .553-.894V9.665c0-.1-.06-.19-.152-.23L9.5 6.715v.993l5.227 2.178a.125.125 0 0 1 .001.23l-5.94 2.546a2 2 0 0 1-1.576 0l-5.94-2.546a.125.125 0 0 1 .001-.23L6.5 7.708l-.013-.988L.152 9.435a.25.25 0 0 0-.152.23z"/>
+                    </svg>
+                    <strong>Kyle Johnson</strong>
+                </a>
+
+                <!-- Mobile Support -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Menu Items -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="portfolio.html">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="resume.html">Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="workExp.html">Work Experience</a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </nav><br/><br/><br/>
+
+        <div class="container mt-5 mb-5">
+            <!-- Header and Source Buttons -->
+            <div class="row">
+                <div class="col-lg-6">
+					  <img style="width: 75%; "src="../Images/FallenNightTitle.png">
+
+                    <h6 style="color: #727272;">Personal Project, Unity, C#, Only Developer</h6>
+                </div>
+
+            </div>
+
+            <!-- Description of Project -->
+            <div class="row mt-2 gx-5 gy-5">
+                <div class="col-lg-6">
+					<iframe style="width: 100%; height: 40vh;" src="https://www.youtube.com/embed/X7-5bijzRQI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+                <div class="col-lg-6">
+                    <strong>Fallen Knight</strong> was a Third Year project developed using the Unity engine by a group of 9 people including myself.
+					Tasked with making a functional game over the length of 4 releases and 22, 2 week sprints I helped create the game called Fallen Knight.
+					Fallen knight is a first person action boss rush game with large inspiriations form the Dark souls games.
+					During the course of development I had to wear alot of hats in order to meet the dead lines.
+                </div>                
+            </div>
+
+            <!-- Source Code -->
+            <div class="row mt-4 gx-5 gy-5">
+                <div class="col-lg-3">
+                    <h3 class="mt-3">Tools Programmer</h3> 
+                    <p>	
+					Created Debug manager to quickly execute parts of the bosses Ai for easy reiteration.
+					</p>
+                </div>
+                <div class="col-lg-9">
+                    <pre>
+                        <code class="language-cs" style="width: 100%; height: 50vh;">
+//Initializion of debug buttons	 
+    public void Init(string a_Name, DebugMenu a_DebugMenu, DebugButtonType a_DebugButtonType, Method a_Method)
+    {
+        m_Name = a_Name;
+        m_ButtonText.text = a_Name;
+        m_DebugMenu = a_DebugMenu;
+        m_DebugbuttonType = a_DebugButtonType;
+        m_Method = a_Method;
+		
+// Using a Lamdba mixed with a Delegate so when the button is clicked it will execute the method
+        m_ReferenceToButton.onClick.AddListener(() => m_Method());
+    } 
+	
+-----------------------------------------------------------------------------------------------------------------
+
+	
+//Setting A default debugging button
+	
+//Spawning the prefab of the button
+	    DebugButton DebugButton = Instantiate<DebugButton>(m_Prefab_DebugButton, m_MenuScreens[m_MenuScreens.Count - 1].gameObject.transform);
+        DebugButton.gameObject.transform.localPosition = new Vector3(ScreenX, ScreenY + i * Offset, 0);
+		
+		
+//Hooking up the method this button will call 
+        DebugButton.Init("Immortality On", this, DebugButton.DebugButtonType.DebugMenutype, m_Player.SetImmortalityToTrue);
+		
+		
+		
+		
+		
+-----------------------------------------------------------------------------------------------------------------
+		
+//Attaching the different Toad AI Move List gotten from the list of Enums
+		for (int i = 0; i < m_ToadAttackMoves.Length; i++)
+        {
+         ToadDebugButton toadbutton = Instantiate<ToadDebugButton>(m_Prefab_DebugToadButton, m_MenuScreens[m_MenuScreens.Count - 1].gameObject.transform);
+         toadbutton.gameObject.transform.localPosition = new Vector3(ScreenX, ScreenY + i * Offset, 0);
+         toadbutton.Init(i, m_ToadAttackMoves[i], m_ToadReference);
+        }
+        
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Source Code -->
+            <div class="row mt-2 gx-5 gy-5">
+                <div class="col-lg-9">
+                    <pre>
+                        <code class="language-cs" style="width: 100%; height: 50vh;">
+	 
+Shader "OdellWaterShader" {
+	Properties{
+		_Color("Color", Color) = (1,1,1,1)
+		_BlendColor("Blend Color", Color) = (1,1,1,1)
+		_MainTex("Albedo (RGB)", 2D) = "white" {}
+	_Glossiness("Smoothness", Range(0,1)) = 0.5
+		_Metallic("Metallic", Range(0,1)) = 0.0
+		_InvFade("Soft Factor", Range(0.01,3.0)) = 1.0
+		_FadeLimit("Fade Limit", Range(0.00,1.0)) = 0.3
+		_Scale("Scale", float) = 1
+		_Speed("Speed", float) = 1
+		_RipplePosition("Ripple Position",  Vector) = (0, 0, 0, 0)
+		_WaterAlpha("WaterAlpha", float) = 0.9
+		_Amplitude("RippleStrength", float) = 5
+		_Wave("Wave", float) = 5
+		_Frequency("Frequency", float) = 1
+		_IsRippling("CanRipple", float) = 1
+	}
+		SubShader{
+		Tags{ "Queue" = "Transparent" "RenderType" = "Transparent" }
+		LOD 200
+
+		CGPROGRAM
+		// Physically based Standard lighting model, and enable shadows on all light types
+#pragma surface surf Standard vertex:vert alpha:fade nolightmap
+
+		// Use shader model 3.0 target, to get nicer looking lighting
+#pragma target 3.0
+
+		sampler2D _MainTex;
+
+	struct Input {
+		float2 uv_MainTex;
+		float4 screenPos;
+		float eyeDepth;
+		float3 customValue;
+	};
+
+	half _Glossiness;
+	half _Metallic;
+	fixed4 _Color;
+	fixed4 _BlendColor;
+	float _Scale;
+    float _Speed;
+	float _Frequency;
+
+	float _Amplitude;
+	float _Wave;
+
+
+	float _WaterAlpha;
+	sampler2D_float _CameraDepthTexture;
+	float4 _CameraDepthTexture_TexelSize;
+	float4 _RipplePosition;
+	float _FadeLimit;
+	float _InvFade;
+
+	float _IsRippling;
+
+	void vert(inout appdata_full v, out Input o)
+	{
+		//NormalWave
+		UNITY_INITIALIZE_OUTPUT(Input, o);
+		COMPUTE_EYEDEPTH(o.eyeDepth);
+		half offsetvert = ((v.vertex.x * v.vertex.x) + (v.vertex.z * v.vertex.z));
+		half offsetvert2 = v.vertex.x + v.vertex.z;
+		
+// Calculating the waves time speed and frequency
+		half value0 = _Scale * sin(_Time.w * _Speed * _Frequency + offsetvert2);
+
+
+//Moving the vertex and normals to the new wave
+		v.vertex.y += value0;
+		v.normal.y += value0;
+		o.customValue += value0;
+		
+	}
+
+	void surf(Input IN, inout SurfaceOutputStandard o) {
+// Albedo comes from a texture tinted by color
+		fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
+		o.Albedo = c.rgb;
+// Metallic and smoothness come from slider variables
+		o.Metallic = _Metallic;
+		o.Smoothness = _Glossiness;
+
+
+//Gets the camera depth buffer to calculate the rim
+		float CameraDepth = SAMPLE_DEPTH_TEXTURE_PROJ(_CameraDepthTexture, UNITY_PROJ_COORD(IN.screenPos));
+		float SceneDepth = LinearEyeDepth(CameraDepth);
+		float partZ = IN.eyeDepth;
+
+		float fade = 1.0;
+		if (CameraDepth > 0.0) // Make sure the depth texture exists
+//If the cameradepth is greater then create the rim
+			fade = saturate(_InvFade * (SceneDepth - partZ));
+		o.Alpha = c.a * fade; //(original line)
+		
+//Final Input
+		o.Alpha = _WaterAlpha;
+		
+		if (fade < _FadeLimit)
+		o.Albedo = c.rgb * fade + _BlendColor * (1 - fade);
+	}
+	ENDCG
+	}
+}
+                        </code>
+                    </pre>
+                </div>
+                <div class="col-lg-3">
+                    <h3 class="mt-3">Grapics Programmer</h3> 
+                    <p>As Graphics Programmer I created a Water shader and used depth buffer and vertex disfered rendering to create the shader.</p>
+                </div>
+            </div>
+
+
+            <!-- Source Code -->
+            <div class="row mt-4 gx-5 gy-5">
+                <div class="col-lg-3">
+                    <h3 class="mt-3">Gameplay Programmer</h3> 
+                    <p>	
+					 As a Gameplay Programmer I created intricate boss Ai. The bosses were designed with a giant state machine of the actions they will execute
+					and a complex web of when they would accomplish those actions.
+					</p>
+                </div>
+                <div class="col-lg-9">
+                    <pre>
+                        <code class="language-cs" style="width: 100%; height: 50vh;">
+   public KingShieldCharge(AIController aAIController) : base(aAIController)
+    {
+        m_KingChargeTimer = Services.TimerManager.CreateTimer("m_KingChargeTimer", ChargeDuration, false);
+        m_KingChargeDelayTimer = Services.TimerManager.CreateTimer("m_KingChargeDelayTimer", ChargeDelay, false);
+    }
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+
+    public override void Start()
+    {
+
+
+        // Get the king's starting position
+        m_PreMovePosition = ((AIKingController)m_AIController).transform.position;
+
+        // Set hit and charging to false
+        m_AlreadyHit = false;
+        m_Charging = false;
+
+        // Setup the timers
+        m_KingChargeDelayTimer.Restart();
+
+        // Start the animation
+        ((AIKingController)m_AIController).m_Animator.SetTrigger("Charge");
+
+    }
+
+--------------------------------------------------------------------------------------------------------------------------
+
+// Update is called once per frame
+    public override void Update()
+    {
+// If the delay timer is running
+        if(m_KingChargeDelayTimer.IsRunning() == true)
+        {
+// Turn to look at the player
+            ((AIKingController)m_AIController).TurnToPlayer();
+        }
+
+// If the delay is done and the king isin't charging
+        if (m_KingChargeDelayTimer.IsFinished() && m_Charging == false)
+        {
+// Set charging to true and start the charge timer
+            m_Charging = true;
+            m_KingChargeTimer.Restart();
+
+// Sets the target's position to the Player's position and 
+            m_TargetPosition = ((AIKingController)m_AIController).transform.position + (((AIKingController)m_AIController).transform.forward * (((AIKingController)m_AIController).GetDistanceToPlayer() + m_ChargeDistanceBehindPlayer));
+        }
+
+// If the king is charging
+        if (m_KingChargeTimer.IsRunning() && m_Charging == true)
+        {
+// CHARGE!!!!!!
+            ((AIKingController)m_AIController).transform.position = Vector3.Lerp(m_PreMovePosition, m_TargetPosition, m_KingChargeTimer.GetPercentage());
+        }
+
+// If the king is done charging
+        if (m_KingChargeTimer.IsFinished() && m_Charging == true)
+        {
+ // If the animation is done
+            if (((AIKingController)m_AIController).m_Animator.GetCurrentAnimatorStateInfo(0).IsTag("ShieldEnd") && ((AIKingController)m_AIController).m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.98f || ((AIKingController)m_AIController).m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
+// Attack is finished
+                ((AIKingController)m_AIController).CurrentActionFinished();
+            }
+        }
+
+// If the king is charging, hit the player and hasn't already hit the player
+        if (m_Charging == true && ((AIKingController)m_AIController).m_KingChargeTrigger.m_IsPlayerinside == true && m_AlreadyHit == false)
+        {
+// Set hit to true
+            m_AlreadyHit = true;
+
+ // Deal Damage to player
+            Services.GameManager.Player.TakeDamage(Constants.KingSheildChargeDamage);
+
+// Set the force and radius
+            float Force = 100;
+
+// Push the player away
+            Services.GameManager.Player.MovementController.PushPlayer(((AIKingController)m_AIController).transform.position, Force);
+        }
+    }
+}
+    
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+
+	 <p>
+      <b>Fallen Knight</b> was a great project to work on that helped me grow as a programmer and as a person. Communicating with a large group of 
+	  people with hierarchy was a challenge but in the end we persisted and created a great work that we can all be proud of.
+	  </p>
+
+
+            <!-- Gallery -->
+            <h3>Gallery</h3>
+            <br/>
+            <div class="row gx-5 gy-5">
+                <div class="col-lg-4">
+                    <img style="width: 100%; "src="../Images/Fallen1.gif">
+                </div>
+                <div class="col-lg-4">
+                    <img style="width: 100%; "src="../Images/Fallen2.gif">
+                </div>
+                <div class="col-lg-4">
+                    <img style="width: 100%; "src="../Images/Fallen3.png">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
