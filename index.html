@@ -16,6 +16,11 @@
 
         <!-- Custom CSS -->
         <style>
+            html {
+                overflow: -moz-scrollbars-vertical; 
+                overflow-y: scroll;
+            }
+
             .background-container {
                 position: fixed;
                 width: 100%;
@@ -35,7 +40,7 @@
             }
         </style>
     </head>
-    <body data-bs-spy="scroll" data-bs-target="#scroll-nav" data-bs-offset="0" tabindex="0">
+    <body>
 
         <!-- Navigation Bar -->
         <nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-lg" style="background-color: rgba(0, 0, 0, .85) !important; -webkit-backdrop-filter: saturate(180%) blur(20px) !important; backdrop-filter: saturate(180%) blur(20px) !important;">
