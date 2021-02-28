@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Kyle Johnson - Portfolio</title>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap Integration -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+        <!-- Bootstrap Icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+        <!-- Highlight JS code block highlighting -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/stackoverflow-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+
+        <!-- Custom CSS -->
+        <style>
+            .hover-action {
+                cursor: pointer;
+                transition: 0.5s ease;
+                height: 300px;
+                margin-bottom: 0 !important;
+            }
+
+            .hover-action:hover {
+                -webkit-transform: scale(0.95);
+                -ms-transform: scale(0.95);
+                transform: scale(0.95);
+                transition: 0.5s ease;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-lg" style="background-color: rgba(0, 0, 0, .85) !important; -webkit-backdrop-filter: saturate(180%) blur(20px) !important; backdrop-filter: saturate(180%) blur(20px) !important;">
+            <div class="container">
+                <!-- Home -->
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-joystick me-2" viewBox="0 0 16 16">
+                    <path d="M10 2a2 2 0 0 1-1.5 1.937v5.087c.863.083 1.5.377 1.5.726 0 .414-.895.75-2 .75s-2-.336-2-.75c0-.35.637-.643 1.5-.726V3.937A2 2 0 1 1 10 2z"/>
+                    <path d="M0 9.665v1.717a1 1 0 0 0 .553.894l6.553 3.277a2 2 0 0 0 1.788 0l6.553-3.277a1 1 0 0 0 .553-.894V9.665c0-.1-.06-.19-.152-.23L9.5 6.715v.993l5.227 2.178a.125.125 0 0 1 .001.23l-5.94 2.546a2 2 0 0 1-1.576 0l-5.94-2.546a.125.125 0 0 1 .001-.23L6.5 7.708l-.013-.988L.152 9.435a.25.25 0 0 0-.152.23z"/>
+                    </svg>
+                    <strong>Kyle Johnson</strong>
+                </a>
+
+                <!-- Mobile Support -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Menu Items -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/portfolio.html">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/resume.html">Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/workExp.html">Work Experience</a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </nav><br/><br/><br/>
+
+        <div class="container mt-5 mb-5">
+            <!-- Header and Source Buttons -->
+            <div class="row">
+                <div class="col-lg-6">
+                 <img style="width: 75%; "src="../Images/Pac-Man_title.png">
+                    <h6 style="color: #727272;">Personal Project, Unity, C#, Only Developer</h6>
+                </div>
+                <div class="col-lg-6">
+					<a href="https://github.com/kjtherocker/TCPacMan" class="btn btn-dark float-end mt-3 ms-2"><i class="bi bi-github me-1"></i> Source Code</a>
+                </div>
+            </div>
+
+            <!-- Description of Project -->
+            <div class="row mt-2 gx-5 gy-5">
+                <div class="col-lg-6">
+					<iframe style="width: 100%; height: 40vh;"src="https://www.youtube.com/embed/QDx10DZFPIY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="col-lg-6">
+                    <strong>Pacman </strong> The classic video game from 1980 recreated beautifully in Unity.
+					<br></br>
+						
+		 		     <p>
+					<strong>Pacman</strong> is a simple game consume all the pellets and complete the level but you have to watch out for ghosts or you will die.
+
+					</p>
+	   
+                </div>                
+
+				
+            </div>
+			
+			
+			            <!-- Source Code -->
+            <div class="row mt-2 gx-5 gy-5">
+                <div class="col-lg-9">
+                    <pre>
+                        <code class="language-cs" style="width: 100%; height: 50vh;">
+						
+
+//Setting up the unique behaviours inside the ghost
+	 
+public class Ghost_Clyde : Ghosts
+{
+    public override void Initialize(PlayerController aPacman, FloorManager aFloorManager)
+    {
+        base.Initialize(aPacman ,aFloorManager );
+        m_GhostBehaviours.Add(GhostStates.Standby, new Behaviour_StandBy());
+        m_GhostBehaviours.Add(GhostStates.GhostUnique, new Behaviour_Clyde());
+        m_GhostBehaviours.Add(GhostStates.Agression, new Behaviour_Blinky());
+        m_GhostBehaviours.Add(GhostStates.Corner, new Behaviour_Corner());
+        m_GhostBehaviours.Add(GhostStates.Eatable, new Behaviour_Eatable());
+        m_GhostBehaviours.Add(GhostStates.Death, new Behaviour_ReturnToSpawn());
+        
+        foreach (var behaviour in m_GhostBehaviours)
+        {
+            behaviour.Value.Initialize(this, m_Pacman , m_FloorManager);
+        }
+
+        m_DefaultGhostMaterial = Resources.Load<Material>("Ghost/Material_Clyde");
+
+        m_GhostType = GhostTypes.Cylde;
+
+    }
+}
+
+
+
+//Each behaviour is only updated when its the current behaviour
+
+   public void Update()
+    {
+        if (m_CurrentBehaviour != null)
+        {
+            m_CurrentBehaviour.UpdateBehaviour();
+        }
+    }
+
+
+
+// Inside the behaviour they act on how they are moving
+
+    private int m_DistanceFromPacman = 4;
+    private float m_FearTimer = 2;
+    private float m_CurrentFearTimer;
+    public override void Initialize(Ghosts aGhost , PlayerController aPacman, FloorManager aFloorManager)
+    {
+        base.Initialize(aGhost,aPacman,aFloorManager);
+        
+        m_CalculationRefreshRate = Helpers.Constants.GhostFrameRecalculation;
+        m_GhostSpeed = Helpers.Constants.GhostNormalSpeed;
+        m_TimerEnd = Helpers.Constants.GhostAggressiveTime;
+    }
+
+
+    public Vector2Int RandomNode()
+    {
+        return m_FloorManager.GetRandomNode().m_PositionInGrid;
+    }
+
+    public override void ActivateBehaviour()
+    {
+        m_GoalPosition = m_Ghost.m_Pacman.m_CurrentNode.m_PositionInGrid;
+        m_Paths = m_Ghost.CalculatePath(m_GoalPosition);
+        m_Ghost.SetGhostMaterial(m_Ghost.m_DefaultGhostMaterial);
+        m_CurrentTimer = 0;
+        NextMove();
+    }
+
+    public override void UpdateBehaviour()
+    {
+        m_CurrentTimer += Time.deltaTime;
+        m_CurrentFearTimer += Time.deltaTime;
+        
+        
+        if (m_CurrentTimer >= m_TimerEnd)
+        {
+            m_Ghost.SetGhostBehaviour(Ghosts.GhostStates.Agression, true);
+        }
+
+        if (m_CurrentFearTimer >= m_FearTimer)
+        {
+            if (Vector3.Distance(m_Ghost.gameObject.transform.position, m_Pacman.transform.position) < 15.0f)
+            {
+                Debug.Log("RUN AWAY");
+                m_GoalPosition = RandomNode();
+                m_Paths = m_Ghost.CalculatePath(m_GoalPosition);
+                m_CurrentFearTimer = 0;
+            }
+        }
+
+        if (m_Paths.Count > 0)
+        {
+            if (m_Paths[0] != null)
+            {
+                DirectMovement(m_Ghost.gameObject.transform, m_Paths[0], m_GhostSpeed);
+            }
+        }
+    }
+    
+    public void Reset()
+    {
+        m_GoalPosition = m_Ghost.m_Pacman.m_CurrentNode.m_PositionInGrid;
+        m_Paths = m_Ghost.CalculatePath(m_GoalPosition);
+        m_CurrentTimer = 0;
+        NextMove();
+    }
+
+    public override void NextMove()
+    {
+
+        if (m_Paths.Count <= 1)
+        {
+            Reset();
+            return;
+        }
+        
+
+        m_Paths.RemoveAt(0);
+
+    }
+
+
+                        </code>
+                    </pre>
+                </div>
+                <div class="col-lg-3">
+                    <h3 class="mt-3">Ghost AI State Machine</h3> 
+                    <p>The Ghosts in pacman are the classic defintion of the statemachine design pattern. Every ghost has there own states that is currently being updated
+						and they can swap between quickly without any dependencys </p>
+                </div>
+            </div>
+
+
+            <!-- Source Code -->
+            <div class="row mt-4 gx-5 gy-5">
+                <div class="col-lg-3">
+                    <h3 class="mt-3">Level Generation</h3> 
+                    <p>	
+					 The level is first generated with me getting each direction that would be avaliable to move under. Then we do a second pass where we add the unique objects like the ghost buster and pellets/
+					</p>
+                </div>
+                <div class="col-lg-9">
+                    <pre>
+                        <code class="language-cs" style="width: 100%; height: 50vh;">
+						
+						
+						
+public class Floor_Classic : Floor
+{
+
+    public enum FloorGimmicks
+    {
+        Empty = 0,
+        Pellet = 1,
+        Ghostbuster = 2,
+    }
+    
+	
+	public enum FloorDirections
+    {
+        Empty = 0,
+        Up = 1,
+        Down = 2,
+        Left = 3,
+        Right = 4,
+        AllSidesOpen = 5,
+        UpDown = 6,
+        UpLeft = 7,
+        Upright = 8,
+        LeftDown = 9,
+        RightDown = 10,
+        LeftRight = 11,
+        UpLeftRight = 12,
+        UpLeftDown = 13,
+        UpRightDown = 14,
+        DownLeftRight = 15,
+    }
+
+
+
+    // Start is called before the first frame update
+    public override void Initialize()
+    {
+        m_GridDimensionX = 20;
+        m_GridDimensionY = 20;
+        
+
+        m_FloorBlueprint = new short[]
+        {   
+            10, 11, 15, 11, 11,  9,  0, 10, 11, 11, 15, 11,  9,  0,  0,  0,  0,  0,  0,  0, //1
+             6,  0,  6,  0,  0,  6,  0,  6,  0,  0,  6,  0,  6,  0,  0,  0,  0,  0,  0,  0, //2
+            14, 11,  5, 11, 15, 12, 11, 12, 15, 11,  5, 11, 13,  0,  0,  0,  0,  0,  0,  0, //3
+             6,  0,  6,  0,  6,  0,  0,  0,  6,  0,  6,  0,  6,  0,  0,  0,  0,  0,  0,  0, //4
+             8, 11, 13,  0,  8,  9,  0, 10,  7,  0, 14, 11,  7,  0,  0,  0,  0,  0,  0,  0, //5
+             0,  0,  6,  0, 0,   6,  0,  6,  0,  0,  6,  0,  0,  0,  0,  0,  0,  0,  0,  0, //6
+             0,  0,  6,  0, 10, 12, 11, 12,  9,  0,  6,  0,  0,  0,  0,  0,  0,  0,  0,  0, //7
+             0,  0, 14, 11, 13,  4, 12,  3, 14, 11, 13,  0, 0,  0,  0,  0,  0,  0,  0,  0, //8
+             0,  0,  6,  0, 14, 11, 11, 11, 13,  0,  6,  0,  0,  0,  0,  0,  0,  0,  0,  0, //9
+             0,  0,  6,  0,  6,  0,  0,  0,  6,  0,  6,  0,  0,  0,  0,  0,  0,  0,  0,  0, //10
+            10, 11,  5, 11, 12,  9,  0, 10, 12, 11,  5, 11,  9,  0,  0,  0,  0,  0,  0,  0, //11
+             6,  0,  6,  0,  0,  6,  0,  6,  0,  0,  6,  0,  6,  0,  0,  0,  0,  0,  0,  0, //12
+             8,  9, 14, 11, 15, 12, 11, 12, 15, 11, 13, 10,  7,  0,  0,  0,  0,  0,  0,  0, //13
+             0, 14,  7,  0,  6,  0,  0,  0,  6,  0,  8, 13,  0,  0,  0,  0,  0,  0,  0,  0, //14
+            10,  7,  0,  0,  8,  9,  0, 10,  7,  0,  0, 8,  9,  0,  0,  0,  0,  0,  0,  0, //15
+             6,  0,  0,  0,  0,  6,  0,  6,  0,  0,  0,  0,  6,  0,  0,  0,  0,  0,  0,  0, //16
+             8, 11, 11, 11, 11, 12, 11, 12, 11, 11, 11, 11,  7,  0,  0,  0,  0,  0,  0,  0, //17
+             0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, //18
+             0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, //19
+             0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0  //20
+        //  1   2   3   4   5   6   7   8   9  10  11   12  13  14  15  16  17  18  19  20
+        }; 
+        
+        
+        m_GoalsBlueprint = new short[]
+        {   
+             1,  1,  1,  1,  1,  1,  0,  1,  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,  0,  0, //1
+             2,  0,  1,  0,  0,  1,  0,  1,  0,  0,  1,  0,  2,  0,  0,  0,  0,  0,  0,  0, //2
+             1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,  0,  0, //3
+             1,  0,  1,  0,  1,  0,  0,  0,  1,  0,  1,  0,  1,  0,  0,  0,  0,  0,  0,  0, //4
+             1,  1,  1,  0,  1,  1,  0,  1,  1,  0,  1,  1,  1,  0,  0,  0,  0,  0,  0,  0, //5
+             0,  0,  1,  0,  0,  0,  0,  0,  0,  0,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0, //6
+             0,  0,  1,  0,  0,  0,  0,  0,  0,  0,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0, //7
+             0,  0,  1,  0,  0,  0,  0,  0,  0,  0,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0, //8
+             0,  0,  1,  0,  0,  0,  0,  0,  0,  0,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0, //9
+             0,  0,  1,  0,  0,  0,  0,  0,  0,  0,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0, //10
+             1,  1,  1,  1,  1,  1,  0,  1,  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,  0,  0, //11
+             2,  0,  1,  0,  0,  1,  0,  1,  0,  0,  1,  0,  2,  0,  0,  0,  0,  0,  0,  0, //12
+             1,  1,  1,  1,  1,  1,  0,  1,  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,  0,  0, //13
+             0,  1,  1,  0,  1,  0,  0,  0,  1,  0,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0, //14
+             1,  1,  0,  0,  1,  1,  0,  1,  1,  0,  0,  1,  1,  0,  0,  0,  0,  0,  0,  0, //15
+             1,  0,  0,  0,  0,  1,  0,  1,  0,  0,  0,  0,  1,  0,  0,  0,  0,  0,  0,  0, //16
+             1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,  0,  0, //17
+             0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, //18
+             0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, //19
+             0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0  //20
+        //  1   2   3   4   5   6   7   8   9  10  11   12  13  14  15  16  17  18  19  20
+        }; 
+        
+        
+
+        SpawnPlayer();
+        SpawnGhosts();
+    }
+    
+	
+	
+	
+	//Spawning the unique objects on the pacman floor I called them gimmicks
+	
+	public void SpawnGimmick(FloorNode aFloornode, short aGimmickType)
+    {
+        GameObject gimmickToSpawn = null;
+        switch (aGimmickType)
+        {
+            case (short)FloorGimmicks.Pellet:
+			
+               //Each gimmick is initially object pooled so we can easily reset
+                gimmickToSpawn = GetInActiveGimmickObject( m_PelletPool);
+                if (gimmickToSpawn == null)
+                {
+                    return;
+                }
+
+                gimmickToSpawn.transform.position = aFloornode.transform.position +  Helpers.Constants.HeightOffGrid;;
+
+                break;
+            
+            case (short)FloorGimmicks.Ghostbuster:
+                gimmickToSpawn = GetInActiveGimmickObject( m_GhostBusterPool);
+                if (gimmickToSpawn == null)
+                {
+                    return;
+                }
+                
+                gimmickToSpawn.transform.position = aFloornode.transform.position + Helpers.Constants.HeightOffGrid;;
+                
+                
+                break;
+        }
+        
+
+    }
+    
+	
+
+    
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+
+	 <p>
+      <b>Pacman</b> was a great project to quickly make. We really have come a long way since pacman.
+	  </p>
+
+
+            <!-- Gallery -->
+            <h3>Gallery</h3>
+            <br/>
+            <div class="row gx-5 gy-5">
+                <div class="col-lg-4">
+                    <img style="width: 100%; "src="../Images/Pac_1.png">
+                </div>
+                <div class="col-lg-4">
+                    <img style="width: 100%; "src="../Images/Pac_1.png">
+                </div>
+                <div class="col-lg-4">
+                    <img style="width: 100%; "src="../Images/Pac_3.png">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
