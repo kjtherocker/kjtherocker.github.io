@@ -14,12 +14,13 @@
         <!-- Bootstrap Icons -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
+        <!-- Highlight JS code block highlighting -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/stackoverflow-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+
         <!-- Custom CSS -->
         <style>
-            .text-dec {
-                text-decoration: none;
-            }
-
             .hover-action {
                 cursor: pointer;
                 transition: 0.5s ease;
@@ -35,7 +36,7 @@
             }
         </style>
     </head>
-    <body data-bs-spy="scroll" data-bs-target="#scroll-nav" data-bs-offset="0" tabindex="0">
+    <body>
 
         <!-- Navigation Bar -->
         <nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-lg" style="background-color: rgba(0, 0, 0, .85) !important; -webkit-backdrop-filter: saturate(180%) blur(20px) !important; backdrop-filter: saturate(180%) blur(20px) !important;">
@@ -58,16 +59,16 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link" href="/index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="portfolio.html">Portfolio</a>
+                        <a class="nav-link" href="/portfolio.html">Portfolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="resume.html">Resume</a>
+                        <a class="nav-link" href="/resume.html">Resume</a>
                     </li>
                     <li class="nav-item">
-                         <a class="nav-link active" aria-current="page" href="workExp.html">Work Experience</a>
+                        <a class="nav-link active" aria-current="page" href="/workExp.html">Work Experience</a>
                     </li>
                     </ul>
                 </div>
@@ -75,35 +76,64 @@
         </nav><br/><br/><br/>
 
         <div class="container mt-5 mb-5">
-            <h1>Work Experience</h1>
-            <h6 style="color: #727272;">Check out the projects I worked On.</h6>
-            <br/>
+            <!-- Header and Source Buttons -->
+            <div class="row">
+                <div class="col-lg-6">
+					  <img style="width: 75%; "src="../Images/HomeNovaknightslogo.png">
 
-            <div class="row gx-3 gy-3 mt-5">
-                <a href="WorkExperience/RCTT.html" class="text-dec col-lg-5 col-md-12 mb-0">
-                    <div class="hover-action p-5 text-light shadow p-3 mb-5 rounded" style="background: #58B19F;">
-                        <h3>Roller Coaster Tycoon Touch</h3>
-                        <p>Nvizzio, Mobile, Unity, GameDeveloper, C#</p>
-                    </div>
-                </a>
-                <div class="col-lg-3 col-md-12">
-				 <a href="WorkExperience/Simutech.html" class="text-dec col-lg-7 col-md-12 mb-0">
-                    <div class="hover-action p-5 text-light shadow p-3 mb-5 rounded" style="background: #182C61;">
-                        <h3>Training Simulations</h3>
-                        <p>Simutech, Unity, Developer, C#</p>
-                    </div>
-				 </a>
-                </div>
-                <div class="col-lg-3 col-md-12">
-				 <a href="WorkExperience/NovaKnights.html" class="text-dec col-lg-8 col-md-14 mb-0">
-                    <div class="hover-action p-5 text-light shadow p-3 mb-5 rounded" style="background: #82589F;">
-						<h3>Nova Knights</h3>
-                        <p>Expired Games, Unity, Contract Developer, C#</p>
-                    </div>
-				</a>
-                </div>
+                    <h6 style="color: #727272;"> Unity, C#, Contract Game Developer</h6>
                 </div>
 				
+				<div class="col-lg-6">
+					<a href="https://www.simutechmultimedia.com/" class="btn btn-dark float-end mt-3 ms-2"><i class="bi bi-github me-1"></i> Click this to vist the main website</a>
+                </div>
+			
+
+
+
+			<div class="row mt-2 gx-5 gy-5">
+                <div class="col-lg-6">
+					<iframe style="width: 100%; height: 40vh;" src="https://www.youtube.com/embed/fiPKX7sIa4I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+                <div class="col-lg-6">
+		      During my third year of college I worked at <b>Expired Games</b> as a Contract Programmer for the length of 4 months.
+		      I was hired to help out on development of the game Nova Knights a hack and slash beatum up similar to games like River City girls
+		      and Castle Crashers.
+                </div>                
+            </div>
+			
+		<div class="row mt-2 gx-5 gy-5">
+
+              <p>	
+			 During the 4 months I helped out to modify old code and to create new code from scratch. The largest responsibility I had was to 
+		     create a modular dialogue system that could be changed to suit the scene. I created a bunch of generic triggers that when finished
+		     would send a Json file to the dialogue manager. When recieved the dialogue manager would parse different aspects of the file such as
+		     portraits,Fonts and the text itself.
+			 </p>
+
+		</div>            
+
+
+		<div class="row mt-2 gx-5 gy-5">
+            <p>	
+			  Overall working with Expired Games was a great experince and I am happy they gave so much responsibility to a student.
+			</p>
+         
+	       </div> 
+
+            <!-- Gallery -->
+            <h3>Gallery</h3>
+            <br/>
+            <div class="row gx-5 gy-5">
+                <div class="col-lg-4">
+                    <img style="width: 100%; "src="../Images/NovaKnights1.png">
+                </div>
+                <div class="col-lg-4">
+                    <img style="width: 100%; "src="../Images/NovaKnights2.jpg">
+                </div>
+                <div class="col-lg-4">
+                    <img style="width: 100%; "src="../Images/NovaKnight.png">
+                </div>
             </div>
         </div>
     </body>
