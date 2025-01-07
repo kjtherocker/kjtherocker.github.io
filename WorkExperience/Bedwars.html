@@ -14,12 +14,13 @@
         <!-- Bootstrap Icons -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
+        <!-- Highlight JS code block highlighting -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/stackoverflow-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+
         <!-- Custom CSS -->
         <style>
-            .text-dec {
-                text-decoration: none;
-            }
-
             .hover-action {
                 cursor: pointer;
                 transition: 0.5s ease;
@@ -35,7 +36,7 @@
             }
         </style>
     </head>
-    <body data-bs-spy="scroll" data-bs-target="#scroll-nav" data-bs-offset="0" tabindex="0">
+    <body>
 
         <!-- Navigation Bar -->
         <nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-lg" style="background-color: rgba(0, 0, 0, .85) !important; -webkit-backdrop-filter: saturate(180%) blur(20px) !important; backdrop-filter: saturate(180%) blur(20px) !important;">
@@ -58,16 +59,16 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link" href="/index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="portfolio.html">Portfolio</a>
+                        <a class="nav-link" href="/portfolio.html">Portfolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="resume.html">Resume</a>
+                        <a class="nav-link" href="/resume.html">Resume</a>
                     </li>
                     <li class="nav-item">
-                         <a class="nav-link active" aria-current="page" href="workExp.html">Work Experience</a>
+                        <a class="nav-link active" aria-current="page" href="/workExp.html">Work Experience</a>
                     </li>
                     </ul>
                 </div>
@@ -75,41 +76,74 @@
         </nav><br/><br/><br/>
 
         <div class="container mt-5 mb-5">
-            <h1>Work Experience</h1>
-            <h6 style="color: #727272;">Check out the projects I worked On.</h6>
-            <br/>
+            <!-- Header and Source Buttons -->
+            <div class="row">
+                <div class="col-lg-6">
+					  <img style="width: 75%; "src="../Images/BedWarsIcon.png">
 
-            <div class="row gx-3 gy-3 mt-5">
-				<a href="WorkExperience/Bedwars.html" class="text-dec col-lg-5 col-md-12 mb-0">
-                    <div class="hover-action p-5 text-light shadow p-3 mb-5 rounded" style="background: #e9bd25;">
-                        <h3>Bedwars</h3>
-                        <p>Equinox, Webgl, Multiplayer, GameDeveloper</p>
-                    </div>
-                </a>
-                <a href="WorkExperience/RCTT.html" class="text-dec col-lg-5 col-md-12 mb-0">
-                    <div class="hover-action p-5 text-light shadow p-3 mb-5 rounded" style="background: #58B19F;">
-                        <h3>Roller Coaster Tycoon Touch</h3>
-                        <p>Nvizzio, Mobile, Unity, GameDeveloper, C#</p>
-                    </div>
-                </a>
-                <div class="col-lg-3 col-md-12">
-				 <a href="WorkExperience/Simutech.html" class="text-dec col-lg-7 col-md-12 mb-0">
-                    <div class="hover-action p-5 text-light shadow p-3 mb-5 rounded" style="background: #182C61;">
-                        <h3>Training Simulations</h3>
-                        <p>Simutech, Unity, Developer, C#</p>
-                    </div>
-				 </a>
-                </div>
-                <div class="col-lg-3 col-md-12">
-				 <a href="WorkExperience/NovaKnights.html" class="text-dec col-lg-8 col-md-14 mb-0">
-                    <div class="hover-action p-5 text-light shadow p-3 mb-5 rounded" style="background: #82589F;">
-						<h3>Nova Knights</h3>
-                        <p>Expired Games, Unity, Contract Developer, C#</p>
-                    </div>
-				</a>
-                </div>
+                    <h6 style="color: #727272;">Equinox, Webgl, Multiplayer, GameDeveloper</h6>
                 </div>
 				
+	
+
+            </div>
+
+            <!-- Description of Project -->
+     
+
+
+				Worked on Bedwars as a Intermediate Game Programmer. Third person shooter (C# Unity , Webgl)
+                 Canceled Project by Equinox Games in partnership with Dotearth. 
+				<br>
+				<br>
+				Bed wars was an interesting project to work on. I have always been surronded by networking but this was 
+				the first time I did it myself.
+				<br>
+				<br>
+				Due to some early layoffs in the early state of the project I had to pick up alot of lead responsability that a usual intermediate game developer wouldn't have to do.
+				<br>
+				<br>
+				Fix any problems that the art team was running into such as problems with version control, Models, Characters and animations.
+				<br>
+				Corrdinated directly with the project lead on the technical state of the project how to improve and what we should work on in the future
+				<br>
+				Push and create servers for all development and staging builds
+				<br>
+				
+				<br>
+				Normal responsabilitys
+				<br>
+				
+				<br>
+				- Collaborated with artists to implement 20 animation assets, 35 pieces of UI and 80 3d models
+				<br>
+				- Created data-driven systems for weapon, items, and match rules using Scriptable Objects and database configs.
+				<br>
+				- Weapon and weapon modification system to dynamically and easily switch property's on a weapon.
+				<br>
+				- Implemented network-synced Building using Fish-Net and data to place anything in the world.
+				<br>
+				<br>
+				
+				<br>
+				Overall Bedwars was an exciting project that I learned alot In.
+				<br>
+				<br>
+
+
+            <!-- Gallery -->
+            <h3>Gallery</h3>
+            <br/>
+            <div class="row gx-5 gy-5">
+                <div class="col-lg-4">
+                    <img style="width: 100%; "src="../Images/Bedwars1.png">
+                </div>
+                <div class="col-lg-4">
+                    <img style="width: 100%; "src="../Images/Bedwars2.png">
+                </div>
+                <div class="col-lg-4">
+                    <img style="width: 100%; "src="../Images/Bedwars3.png">
+                </div>
             </div>
         </div>
     </body>
